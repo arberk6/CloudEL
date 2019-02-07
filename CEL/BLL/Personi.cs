@@ -14,7 +14,7 @@ namespace BLL
         public Char Gjinia { get; set; }
         public String Email { get; set; }
         public int Mosha { get; set; }
-        public String Nr_Telefonit { get; set; }
+        public String NrTelefonit { get; set; }
         public bool Aktiv { get; set; }
     }
 }
