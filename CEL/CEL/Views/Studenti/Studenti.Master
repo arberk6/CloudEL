@@ -1,0 +1,47 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Studenti.master.cs" Inherits="CEL.Views.Studenti.Studenti" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Burimet Njerezore</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="../../Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="margin: auto">
+    <form id="form1" runat="server">
+
+        <%--Header--%>
+        <header>
+            <div>
+                <asp:ImageButton ID="Logo" ImageUrl="~/img/logo.png" runat="server" ToolTip="Hr Managment" Width="180px" Height="60px" />
+                <asp:Button CssClass="ButtoniPerNdryshim" ID="HrPunetore" OnClick="HrPunetore_Click" runat="server" Text="Hr Punetore" />
+                <asp:Button CssClass="ButtoniPerNdryshim" ID="Menxaher" OnClick="Menaxher_Click" runat="server" Text="Menaxher" />
+                <asp:Button CssClass="ButtoniPerNdryshim" ID="Recepsionist" OnClick="Recepsionist_Click" runat="server" Text="Recepsionist" />
+                <asp:Button CssClass="ButtoniPerNdryshim" ID="PR" OnClick="PR_Click" runat="server" Text="Mesazhet" />
+                <%-- <asp:Label ID="UserInfo" runat="server" TabIndex="1"></asp:Label>--%>
+            </div>
+            <%--SideBar--%>
+            <div id="SideBar" class="sidebar" runat="server">
+                <asp:LinkButton id="ProfiliLinkButton" runat="server" OnClick="Profili_Click">Profili</asp:LinkButton>
+                <asp:LinkButton id="PjesemarrjaLinkButton" runat="server" OnClick="Pjesemarrja_Click">Pjesëmarrja</asp:LinkButton>
+                <asp:LinkButton id="RaportetLinkButton" runat="server" OnClick="Raportet_Click">Raportet</asp:LinkButton>
+                <asp:LinkButton id="KontrataLinkButton" runat="server" OnClick="Kontrata_Click">Kontrata</asp:LinkButton>
+                <asp:LinkButton id="DilLinkButton" runat="server" OnClick="Dil_Click">Dil</asp:LinkButton>
+            </div>
+        </header>
+
+        <%--Content--%>
+        <div id="Content">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <%--Footer--%>
+        <footer>
+            <p>Copyrights © 2018 - Te gjitha te drejtat e rezervuara.</p>
+        </footer>
+    </form>
+</body>
+</html>
