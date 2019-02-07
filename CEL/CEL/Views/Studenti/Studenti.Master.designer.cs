@@ -40,22 +40,13 @@ namespace CEL.Views.Studenti {
         protected global::System.Web.UI.WebControls.ImageButton Logo;
         
         /// <summary>
-        /// HrPunetore control.
+        /// Profili control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button HrPunetore;
-        
-        /// <summary>
-        /// Menxaher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Menxaher;
+        protected global::System.Web.UI.WebControls.Button Profili;
         
         /// <summary>
         /// Recepsionist control.

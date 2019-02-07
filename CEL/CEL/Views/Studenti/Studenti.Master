@@ -16,8 +16,7 @@
         <header>
             <div>
                 <asp:ImageButton ID="Logo" ImageUrl="~/img/logo.png" runat="server" ToolTip="Hr Managment" Width="180px" Height="60px" />
-                <asp:Button CssClass="ButtoniPerNdryshim" ID="HrPunetore" OnClick="HrPunetore_Click" runat="server" Text="Hr Punetore" />
-                <asp:Button CssClass="ButtoniPerNdryshim" ID="Menxaher" OnClick="Menaxher_Click" runat="server" Text="Menaxher" />
+                <asp:Button CssClass="ButtoniPerNdryshim" ID="Profili" OnClick="HrPunetore_Click" runat="server" Text="Hr Punetore" />
                 <asp:Button CssClass="ButtoniPerNdryshim" ID="Recepsionist" OnClick="Recepsionist_Click" runat="server" Text="Recepsionist" />
                 <asp:Button CssClass="ButtoniPerNdryshim" ID="PR" OnClick="PR_Click" runat="server" Text="Mesazhet" />
                 <%-- <asp:Label ID="UserInfo" runat="server" TabIndex="1"></asp:Label>--%>
