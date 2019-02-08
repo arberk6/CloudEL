@@ -74,6 +74,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Views\Login.aspx" />
+    <Content Include="Views\PunetoriView\index.aspx" />
     <Content Include="Views\Studenti\Profili.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -85,6 +86,12 @@
     </Compile>
     <Compile Include="Views\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PunetoriView\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PunetoriView\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Studenti\Profili.aspx.cs">
       <DependentUpon>Profili.aspx</DependentUpon>
