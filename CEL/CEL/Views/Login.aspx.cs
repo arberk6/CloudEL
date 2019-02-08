@@ -5,16 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CEL.Views.Studenti
+namespace CEL.Views
 {
-    public partial class Profili : System.Web.UI.Page
+    public partial class Login1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-        }
 
-        private void MbushTeDhenat()
-        {
         }
+    }
 }
