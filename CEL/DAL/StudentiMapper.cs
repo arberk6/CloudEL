@@ -13,5 +13,11 @@ namespace DAL
     {
         private Studenti s = new Studenti();
 
+        public void StudentiMakeRequest()
+        {
+            Studenti s = new Studenti();
+            s.StudentiSelectByID();
+        }
+
     }
 }
