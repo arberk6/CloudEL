@@ -1,0 +1,36 @@
+﻿.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.main {
+    text-align: center;
+    border: 1.5px solid #379dc3;
+    width: 350px;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+    background: white;
+}
+
+.Kyqu {
+    width: 200px;
+    margin: auto;
+}
+
+#ContentPlaceHolder1_loginAsRadioButtonList {
+    margin: auto;
+    text-align: left;
+}
+
+.Regjistro {
+    background: green;
+    Width: 15%;
+    Height: 30px;
+}
+
+.textBoxes {
+    margin: auto;
+    text-align: left;
+    width: 160px;
+}
