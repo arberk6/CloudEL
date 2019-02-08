@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using BLL;
 
 namespace CEL.Views
 {
@@ -12,7 +11,7 @@ namespace CEL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void Login(object sender, EventArgs e)
@@ -27,7 +26,7 @@ namespace CEL.Views
                 Response.Redirect("Studenti/Profili.aspx");
             }
         }
-        
+
         public Boolean ValidateData()
         {
             Session["User_Id"] = email.Text;
