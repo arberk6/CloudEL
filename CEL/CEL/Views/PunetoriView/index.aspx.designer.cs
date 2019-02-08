@@ -7,72 +7,63 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CEL.Views {
+namespace HR_Management_V1._3.Views.HrPunetore {
     
     
-    public partial class Login {
+    public partial class index1 {
         
         /// <summary>
-        /// Logo control.
+        /// NrPunetoreveLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton Logo;
+        protected global::System.Web.UI.WebControls.Label NrPunetoreveLabel;
         
         /// <summary>
-        /// username control.
+        /// PunetoretNrLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox username;
+        protected global::System.Web.UI.WebControls.Label PunetoretNrLabel;
         
         /// <summary>
-        /// usernameRequiredFieldValidator control.
+        /// NrDepartamenteveLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.Label NrDepartamenteveLabel;
         
         /// <summary>
-        /// password control.
+        /// DepartamentetNrLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
+        protected global::System.Web.UI.WebControls.Label DepartamentetNrLabel;
         
         /// <summary>
-        /// passwordRequiredFieldValidator control.
+        /// NrFilialeveLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.Label NrFilialeveLabel;
         
         /// <summary>
-        /// Mesazhi control.
+        /// FilialetNrLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Mesazhi;
-        
-        /// <summary>
-        /// RegjistroButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RegjistroButton;
+        protected global::System.Web.UI.WebControls.Label FilialetNrLabel;
     }
 }
