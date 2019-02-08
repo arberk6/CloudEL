@@ -100,6 +100,7 @@ insert into UserGroup VALUES('2', 'Admin')
 alter table Personi ADD Menaxheri int foreign key references useri(useriid)
 alter table Personi ADD KrijuarNga int NOT NULL foreign key references useri(useriid)
 alter table Personi ADD ModifikuarNga int foreign key references useri(useriid)
+alter table Request add aprovuar bit default 0
 
 -- PROCEDURAT PER STUDENT
 ----------------------------------------------------------------
@@ -284,13 +285,11 @@ go
 ----------------------------------------------------------------
 procedura per request
 ---------------------------------------------------
-create procedure MakeRequest
+alter procedure MakeRequest
 @ProfesoriKursi int,
-@studenti int,
-@CreatedBy int,
-@CreatedDate date
+@studenti int
 as
-insert into request values (@ProfesoriKursi,@studenti,@CreatedBy,@CreatedDate)
+insert into request(ProfesoriKursi,studenti) values (@ProfesoriKursi,@studenti)
 go
 --------------------------------------------------------------
 create procedure readAllRequest
@@ -302,4 +301,21 @@ create procedure requestSelectByID
 @requestid int 
 as
 select * from request where requestid=@requestid
+go
+
+---------------------------------------------------------------
+
+create procedure requestUpdateByID
+@requestid int
+as
+update request set aprovuar=1
+where requestid=@requestid
+go
+
+------------------------------------------
+create procedure GetKursiByProfesoriID
+@profesoriid int
+as
+select * from ProfesoriKursi
+where ProfesoriID=@profesoriid
 go

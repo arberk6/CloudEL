@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HR_Management_V1._3.Views.HrPunetore {
+namespace CEL.Views.PunetoriView {
     
     
     public partial class index1 {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/HrPunetore/HrPunetore.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="HR_Management_V1._3.Views.HrPunetore.index1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/PunetoriView/Punetori.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="CEL.Views.PunetoriView.index1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Style/HrPunetore.css" rel="stylesheet" />
     <link href="../../Content/bootstrap.css" rel="stylesheet" />

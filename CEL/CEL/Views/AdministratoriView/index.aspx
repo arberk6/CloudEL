@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/ProfesoriView/Profesori.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="CEL.Views.ProfesoriView.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/AdministratoriView/Administratori.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="CEL.Views.AdministratoriView.index" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -35,44 +35,23 @@
             <PagerSettings PageButtonCount="20" FirstPageText="fillimi" LastPageText="fundi" />
             <Columns>
 
-                <asp:TemplateField HeaderText="Emri">
+                <asp:TemplateField HeaderText="Kursi">
                     <ItemTemplate>
-                        <asp:Label ID="EmriLabel" runat="server" Text='<%# Bind("Emri") %>' />
+                        <asp:Label ID="KursiLabel" runat="server" Text='<%# Bind("KursiID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Qyteti">
+                <asp:TemplateField HeaderText="Profesori">
                     <ItemTemplate>
-                        <asp:Label ID="QytetiLabel" runat="server" Text='<%# Bind("Qyteti") %>' />
+                        <asp:Label ID="ProfesoriLabel" runat="server" Text='<%# Bind("PersoniID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Email">
+              
+                <%--aprovo--%>
+                <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Label ID="EmailLabel" runat="server" Text='<%# Bind("Email") %>' />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <%--GJENERO KONTRATEN--%>
-                <asp:TemplateField HeaderText="Shiko" ItemStyle-Width="150px" InsertVisible="False">
-                    <ItemTemplate>
-                        <asp:ImageButton ID="GjeneroKontratenButton" ImageUrl="~/Img/gjenero-t.png" runat="server" CommandName="Shiko" CommandArgument='<%# Bind("IDFiliali") %>' ToolTip="GjeneroKontraten" Width="20px" Height="20px" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-
-                <%--EDITO--%>
-                <asp:TemplateField HeaderText="Ndrysho" ItemStyle-Width="10px" InsertVisible="False">
-                    <ItemTemplate>
-                        <asp:ImageButton ID="NdryshoButton" ImageUrl="~/Img/edit.png" runat="server" CommandName="Ndrysho" CommandArgument='<%# Bind("IDFiliali") %>' ToolTip="Ndrysho" Width="20px" Height="20px" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-
-                <%--FSHIJ--%>
-                <asp:TemplateField HeaderText="Fshij" ItemStyle-Width="10px" InsertVisible="False">
-                    <ItemTemplate>
-                        <asp:ImageButton ID="FshijButton" ImageUrl="~/Img/delete.png" runat="server" CommandName="Fshij" CommandArgument='<%# Bind("IDFiliali") %>' ToolTip="Fshij" Width="20px" Height="20px" />
+                        <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
                     </ItemTemplate>
                 </asp:TemplateField>
 

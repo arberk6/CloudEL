@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CEL.Views.ProfesoriView
+namespace CEL.Views.PunetoriView
 {
-    public partial class Profesori : System.Web.UI.MasterPage
+    public partial class Punetori : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

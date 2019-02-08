@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BLL;
 
-namespace Views
+namespace CEL.Views
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +30,6 @@ namespace Views
 
         public Boolean ValidateData()
         {
-            Session["User_Id"] = username.Text;
             //UseriMapper um = new UseriMapper(new Useri());
             return false;//um.Validate(email.Text, password.Text);
         }

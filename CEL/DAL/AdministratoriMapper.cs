@@ -14,5 +14,9 @@ namespace DAL
         public List<Request> getAllRequest() {
             return new Request().readAllRequest();
         }
+
+        public void aproveRequest(int kerkesaid) {
+            new Administratori().Aprovo(userid);
+        }
     }
 }

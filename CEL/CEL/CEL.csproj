@@ -74,8 +74,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Views\Login.aspx" />
-    <Content Include="Views\ProfesoriView\index.aspx" />
+    <Content Include="Views\AdministratoriView\index.aspx" />
     <Content Include="Views\login.aspx" />
+    <Content Include="Views\PunetoriView\index.aspx" />
+    <Content Include="Views\StudentiView\Profili.aspx" />
+    <Content Include="Views\StudentiView\ZgjedhKurset.aspx" />
     <Content Include="Views\Studenti\Profili.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -88,19 +91,54 @@
     <Compile Include="Views\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProfesoriView\index.aspx.cs">
+    <Compile Include="Views\AdministratoriView\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\ProfesoriView\index.aspx.designer.cs">
+    <Compile Include="Views\AdministratoriView\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProfesoriView\Profesori.Master.cs">
-      <DependentUpon>Profesori.Master</DependentUpon>
+    <Compile Include="Views\AdministratoriView\Administratori.Master.cs">
+      <DependentUpon>Administratori.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\ProfesoriView\Profesori.Master.designer.cs">
-      <DependentUpon>Profesori.Master</DependentUpon>
+    <Compile Include="Views\AdministratoriView\Administratori.Master.designer.cs">
+      <DependentUpon>Administratori.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PunetoriView\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PunetoriView\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PunetoriView\Punetori.Master.cs">
+      <DependentUpon>Punetori.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\PunetoriView\Punetori.Master.designer.cs">
+      <DependentUpon>Punetori.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentiView\Profili.aspx.cs">
+      <DependentUpon>Profili.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StudentiView\Profili.aspx.designer.cs">
+      <DependentUpon>Profili.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentiView\Studenti.Master.cs">
+      <DependentUpon>Studenti.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StudentiView\Studenti.Master.designer.cs">
+      <DependentUpon>Studenti.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentiView\ZgjedhKurset.aspx.cs">
+      <DependentUpon>ZgjedhKurset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StudentiView\ZgjedhKurset.aspx.designer.cs">
+      <DependentUpon>ZgjedhKurset.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Studenti\Profili.aspx.cs">
       <DependentUpon>Profili.aspx</DependentUpon>
@@ -127,6 +165,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Studenti\Studenti.Master" />
     <Content Include="Views\Login.Master" />
+    <Content Include="Views\AdministratoriView\Administratori.Master" />
+    <Content Include="Views\StudentiView\Studenti.Master" />
+    <Content Include="Views\PunetoriView\Punetori.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

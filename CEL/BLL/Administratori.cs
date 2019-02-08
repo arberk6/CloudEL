@@ -58,6 +58,22 @@ namespace BLL
             }
             return administratori;
         }
-        
+        public void Aprovo(int idkerkesa)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("requestUpdateByID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@requestid", idkerkesa);
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }
