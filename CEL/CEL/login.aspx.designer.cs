@@ -10,34 +10,25 @@
 namespace CEL.Views {
     
     
-    public partial class Login {
+    public partial class login {
         
         /// <summary>
-        /// Logo control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton Logo;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// username control.
+        /// email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox username;
-        
-        /// <summary>
-        /// usernameRequiredFieldValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameRequiredFieldValidator;
+        protected global::System.Web.UI.WebControls.TextBox email;
         
         /// <summary>
         /// password control.
@@ -49,13 +40,13 @@ namespace CEL.Views {
         protected global::System.Web.UI.WebControls.TextBox password;
         
         /// <summary>
-        /// passwordRequiredFieldValidator control.
+        /// alert control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordRequiredFieldValidator;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alert;
         
         /// <summary>
         /// Mesazhi control.
@@ -67,12 +58,12 @@ namespace CEL.Views {
         protected global::System.Web.UI.WebControls.Label Mesazhi;
         
         /// <summary>
-        /// RegjistroButton control.
+        /// submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RegjistroButton;
+        protected global::System.Web.UI.WebControls.Button submit;
     }
 }

@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministratoriMapper.cs" />
+    <Compile Include="KursiMapper.cs" />
     <Compile Include="PunetoriMapper.cs" />
     <Compile Include="StudentiMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

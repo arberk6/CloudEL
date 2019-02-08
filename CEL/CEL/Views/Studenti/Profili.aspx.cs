@@ -7,11 +7,15 @@ using System.Web.UI.WebControls;
 
 namespace CEL.Views.Studenti
 {
-    public partial class Studenti : System.Web.UI.MasterPage
+    public partial class Profili : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void MbushTeDhenat()
+        {
         }
     }
 }

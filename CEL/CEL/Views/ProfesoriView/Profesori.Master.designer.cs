@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CEL.Views
+namespace CEL.Views.ProfesoriView
 {
 
 
-    public partial class Login
+    public partial class Profesori
     {
 
         /// <summary>

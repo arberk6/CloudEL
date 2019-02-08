@@ -22,7 +22,7 @@ namespace BLL
         public Syllabusi SyllabusiSelectByID(int id)
         {
             SqlConnection con = Generals.GetNewConnection();
-            Syllabusi syllabusi= null;
+            Syllabusi syllabusi = null;
             try
             {
                 SqlCommand cmd = new SqlCommand("SyllabusiSelectByID", con);
@@ -60,3 +60,4 @@ namespace BLL
 
         }
     }
+}
