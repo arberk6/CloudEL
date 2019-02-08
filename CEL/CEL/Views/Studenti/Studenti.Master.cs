@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DAL;
 
 namespace CEL.Views.Studenti
 {
@@ -16,6 +17,7 @@ namespace CEL.Views.Studenti
 
         protected void Profili_Click(object sender, EventArgs e)
         {
+            new StudentiMapper().makeRequest();
         }
     }
 }
