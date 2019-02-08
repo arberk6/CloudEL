@@ -11,7 +11,10 @@ namespace CEL.Views.Studenti
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
-    }
+
+        private void MbushTeDhenat()
+        {
+        }
 }

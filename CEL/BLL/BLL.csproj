@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Administratori.cs" />
     <Compile Include="Default.cs" />
+    <Compile Include="Generals.cs" />
     <Compile Include="Kursi.cs" />
     <Compile Include="Personi.cs" />
     <Compile Include="Profesori.cs" />

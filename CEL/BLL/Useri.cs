@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,5 +15,45 @@ namespace BLL
         public string Username { get; set; }
         public string Passwordi { get; set; }
         public int Prioriteti { get; set; }
+
+        public Useri() { }
+
+        public Useri UseriSelectByID(int id)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            Useri useri = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("UseriSelectByID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@UseriID", id);
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    useri = new Useri();
+                    useri.UseriID= (int)rdr["UseriID"];
+                    useri.Username= rdr["Username"].ToString();
+                    useri.Passwordi= rdr["Passwordi"].ToString();
+                    useri.Prioriteti= (int)rdr["Prioriteti"];
+                    useri.PersoniID= (int)rdr["PersoniID"];
+                    if (rdr["CreatedBy"] != DBNull.Value)
+                        useri.CreatedBy = (int)rdr["CreatedBy"];
+                    if (rdr["CreatedDate"] != DBNull.Value)
+                        useri.CreatedDate = rdr["CreatedDate"].ToString();
+                    if (rdr["ModifiedBy"] != DBNull.Value)
+                        useri.ModifiedBy = (int)rdr["ModifiedBy"];
+                    if (rdr["ModifiedDate"] != DBNull.Value)
+                        useri.ModifiedDate = rdr["ModifiedDate"].ToString();
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+            return useri;
+        }
     }
 }

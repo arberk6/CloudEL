@@ -20,7 +20,11 @@ UseriID int not null primary key identity(1,1),
 Username varchar(20) not null,
 Passwordi varchar(20) not null,
 Prioriteti int foreign key references UserGroup(Prioriteti),
-personi int foreign key references personi(personiid) not null
+personi int foreign key references personi(personiid) not null,
+CreatedBy int foreign key references Useri(useriid) not null ,
+ModifiedBy int foreign key references Useri(useriid) null,
+CreatedDate date,
+ModifiedDate date
 )
 
 create table Programi(
@@ -60,14 +64,7 @@ ModifiedDate date
 )
 
 create table Administratori (
-AdministratoriID int not null primary key identity(1,1),
-Emri varchar(20) not null,
-Mbiemri varchar(20) not null,
-Email varchar (30) not null,
-Mosha int not null,
-NrTelefonit varchar (30) not null,
-Useri int not null foreign key references Useri(UseriID),
-Aktiv bit not null default 1
+AdministratoriID int not null foreign key references personi(personiid)
 )
 
 create table Studenti (
@@ -85,6 +82,15 @@ ProfesoriKursiID int not null primary key identity(1,1),
 ProfesoriID int foreign key references Personi(Personiid),
 KursiID int foreign key references Kursi(KursiID),
 SyllabusiID int foreign key references Syllabusi(SyllabusiID)
+)
+
+create table request
+(
+requestid int not null primary key identity(1,1),
+ProfesoriKursi int not null foreign key references ProfesoriKursi(ProfesoriKursiID),
+studenti int not null foreign key references Personi(personiID),
+CreatedBy int foreign key references Useri(useriid) not null ,
+CreatedDate date
 )
 
 insert into UserGroup VALUES('0', 'Student')
@@ -255,3 +261,45 @@ select * from Administratori where AdministratoriID = @AdministratoriID
 
 go
 ----------------------------------------------------------------
+procedurat per Personin
+----------------------------------------------------------------
+create procedure PersoniSelectByID
+@personiid int
+as
+select * from Personi 
+where PersoniID=@personiid
+go
+----------------------------------------------------------------
+create procedure PersoniInsert
+@PersoniID int,
+@Emri varchar(20) ,
+@Mbiemri varchar(20) ,
+@Gjinia char ,
+@NrTelefonit varchar (30) ,
+@Email varchar (30) ,
+@Mosha int 
+as
+insert into Personi(PersoniID,Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha) values(@PersoniID, @Emri,@Mbiemri,@Gjinia,@NrTelefonit,@Email,@Mosha)
+go
+----------------------------------------------------------------
+procedura per request
+---------------------------------------------------
+create procedure MakeRequest
+@ProfesoriKursi int,
+@studenti int,
+@CreatedBy int,
+@CreatedDate date
+as
+insert into request values (@ProfesoriKursi,@studenti,@CreatedBy,@CreatedDate)
+go
+--------------------------------------------------------------
+create procedure readAllRequest
+as
+select * from request
+go
+--------------------------------------------------------------
+create procedure requestSelectByID
+@requestid int 
+as
+select * from request where requestid=@requestid
+go

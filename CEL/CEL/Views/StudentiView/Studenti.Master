@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Burimet Njerezore</title>
+    <title>Studenti Home Page</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="../../Content/bootstrap.css" rel="stylesheet" />
@@ -16,11 +16,9 @@
         <header>
             <div>
                 <asp:ImageButton ID="Logo" ImageUrl="~/img/logo.png" runat="server" ToolTip="Hr Managment" Width="180px" Height="60px" />
-                <asp:Button CssClass="ButtoniPerNdryshim" ID="Profili" OnClick="HrPunetore_Click" runat="server" Text="Hr Punetore" />
-                <asp:Button CssClass="ButtoniPerNdryshim" ID="Recepsionist" OnClick="Recepsionist_Click" runat="server" Text="Recepsionist" />
-                <asp:Button CssClass="ButtoniPerNdryshim" ID="PR" OnClick="PR_Click" runat="server" Text="Mesazhet" />
-                <%-- <asp:Label ID="UserInfo" runat="server" TabIndex="1"></asp:Label>--%>
-            </div>s
+                <asp:Button CssClass="ProfiliButton" ID="Profili" OnClick="Profili_Click" runat="server" Text="Profili" />
+                <asp:Button CssClass="RegjistroKursetButton" ID="RegjistroKurset" OnClick="RegjistroKurset_Click" runat="server" Text="RegjistroKurset" />
+            </div>
             <%--SideBar--%>
             <div id="SideBar" class="sidebar" runat="server">
                 <asp:LinkButton id="ProfiliLinkButton" runat="server" OnClick="Profili_Click">Profili</asp:LinkButton>
