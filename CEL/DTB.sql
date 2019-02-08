@@ -84,6 +84,15 @@ KursiID int foreign key references Kursi(KursiID),
 SyllabusiID int foreign key references Syllabusi(SyllabusiID)
 )
 
+create table request
+(
+requestid int not null primary key identity(1,1),
+ProfesoriKursi int not null foreign key references ProfesoriKursi(ProfesoriKursiID),
+studenti int not null foreign key references Personi(personiID),
+CreatedBy int foreign key references Useri(useriid) not null ,
+CreatedDate date
+)
+
 insert into UserGroup VALUES('0', 'Student')
 insert into UserGroup VALUES('1', 'Profesor')
 insert into UserGroup VALUES('2', 'Admin')
@@ -273,3 +282,24 @@ as
 insert into Personi(PersoniID,Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha) values(@PersoniID, @Emri,@Mbiemri,@Gjinia,@NrTelefonit,@Email,@Mosha)
 go
 ----------------------------------------------------------------
+procedura per request
+---------------------------------------------------
+create procedure MakeRequest
+@ProfesoriKursi int,
+@studenti int,
+@CreatedBy int,
+@CreatedDate date
+as
+insert into request values (@ProfesoriKursi,@studenti,@CreatedBy,@CreatedDate)
+go
+--------------------------------------------------------------
+create procedure readAllRequest
+as
+select * from request
+go
+--------------------------------------------------------------
+create procedure requestSelectByID
+@requestid int 
+as
+select * from request where requestid=@requestid
+go
