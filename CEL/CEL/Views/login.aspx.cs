@@ -30,6 +30,7 @@ namespace CEL.Views
         
         public Boolean ValidateData()
         {
+            Session["User_Id"] = email.Text;
             //UseriMapper um = new UseriMapper(new Useri());
             return false;//um.Validate(email.Text, password.Text);
         }

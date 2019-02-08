@@ -11,6 +11,7 @@ namespace DAL
 {
     public class StudentiMapper
     {
-          (new Studenti()).
+        private Studenti s = new Studenti();
+
     }
 }
