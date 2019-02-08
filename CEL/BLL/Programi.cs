@@ -34,7 +34,7 @@ namespace BLL
                     programi = new Programi();
                     programi.ProgramiID = (int)rdr["ProgramiID"];
                     programi.Emri = rdr["Emri"].ToString();
-                    programi.Aktiv = rdr["Mbiemri"].ToString();
+                    programi.Aktiv = rdr["Aktiv"].ToString().Equals("1");
                     if (rdr["CreatedBy"] != DBNull.Value)
                         programi.CreatedBy = (int)rdr["CreatedBy"];
                     if (rdr["CreatedDate"] != DBNull.Value)
@@ -49,7 +49,7 @@ namespace BLL
             {
                 con.Close();
             }
-            return studenti;
+            return programi;
         }
     }
 }
