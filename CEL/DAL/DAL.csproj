@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdministratoriMapper.cs" />
+    <Compile Include="PunetoriMapper.cs" />
     <Compile Include="StudentiMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

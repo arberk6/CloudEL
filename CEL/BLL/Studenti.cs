@@ -62,27 +62,5 @@ namespace BLL
             }
             return studenti;
         }
-
-        public void MakeRequest(int profesorikursiid,int studenti)
-        {
-            SqlConnection con = Generals.GetNewConnection();
-            try
-            {
-                SqlCommand cmd = new SqlCommand("MakeRequest", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@ProfesoriKursi", profesorikursiid);
-                cmd.Parameters.AddWithValue("@studenti", studenti);
-
-                cmd.ExecuteNonQuery();
-
-            }
-            finally
-            {
-                con.Close();
-            }
-         
-        }
-
     }
 }
