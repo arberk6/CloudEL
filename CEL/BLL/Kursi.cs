@@ -11,6 +11,6 @@ namespace BLL
         public int KursiID { get; set; }
         public int ProgramiID { get; set; }
         public String Emri { get; set; }
-        public bool Aktiv{ get; set; }
-}
+        public bool Aktiv { get; set; }
+    }
 }
