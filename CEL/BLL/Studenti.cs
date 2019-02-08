@@ -62,5 +62,34 @@ namespace BLL
             }
             return studenti;
         }
+
+        public List<String> GetRequestsForStudenti(int id)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("getKurset", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                SqlCommand cmdpersoni = new SqlCommand("getKurset", con);
+                cmdpersoni.CommandType = CommandType.StoredProcedure;
+                SqlDataReader rdrpersoni = cmd.ExecuteReader();
+
+                List<int> requests = new List<String>();
+
+                while (rdr.Read())
+                {
+                    requests.Add((int)rdrpersoni["ProfesoriID"]);
+                    requests.Add((int)rdrpersoni["KursiID"]);
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+            return requests;
+        }
     }
 }

@@ -13,11 +13,20 @@ namespace DAL
     {
         private Studenti s = null;
 
-        public void makeRequest(int studentiid, int profesorikursiid) {
-            s = new Studenti();
-            s.PersoniID = studentiid;
+        public StudentiMapper(int Studenti_ID)
+        {
+            this.s.PersoniID = Studenti_ID;
+        }
 
-            s.MakeRequest(profesorikursiid, s.PersoniID);
+        public void makeRequest(int studentiid, int profesoriId, int lendaID) {
+            ProfesoriKursi pk = new ProfesoriKursi();
+            pk.Insert(studentiid, profesoriId, lendaID);
+        }
+
+        public List<String> GetRequest()
+        {
+            Studenti s = Studenti();
+            return s.GetRequestsForStudenti(s.PersoniID);
         }
     }
 }
