@@ -1,145 +1,143 @@
-create database E_Learning
-
-create table User_Group (
+--drop database ELearning
+--use ELearning
+create table UserGroup (
 Prioriteti int not null primary key,
 Roli varchar(10) not null
 )
 
+create table Personi(
+PersoniID int primary key not null identity (1,1),
+Emri varchar(20) not null,
+Mbiemri varchar(20) not null,
+Gjinia char not null,
+NrTelefonit varchar (30) not null,
+Email varchar (30) not null,
+Mosha int not null,
+Aktiv bit not null default 1
+)
 create table Useri (
-Useri_ID int not null primary key identity(1,1),
+UseriID int not null primary key identity(1,1),
 Username varchar(20) not null,
 Passwordi varchar(20) not null,
-Prioriteti int foreign key references User_Group(Prioriteti)
+Prioriteti int foreign key references UserGroup(Prioriteti),
+personi int foreign key references personi(personiid) not null
 )
 
 create table Programi(
-Programi_ID int not null primary key identity(1,1),
+ProgramiID int not null primary key identity(1,1),
 Emri varchar(20) not null,
-Aktiv bit not null default 1
+Aktiv bit not null default 1,
+CreatedBy int foreign key references Useri(useriid) not null ,
+ModifiedBy int foreign key references Useri(useriid) null,
+CreatedDate date,
+ModifiedDate date
 )
 
 create table Kursi(
-Kursi_ID int not null primary key identity(1,1),
+KursiID int not null primary key identity(1,1),
 Emri varchar(20) not null,
-Programi int foreign key references Programi(Programi_ID),
-Aktiv bit not null default 1
+Programi int foreign key references Programi(ProgramiID),
+Aktiv bit not null default 1,
+CreatedBy int foreign key references Useri(useriid) not null ,
+ModifiedBy int foreign key references Useri(useriid) null,
+CreatedDate date,
+ModifiedDate date
 )
 
 create table Syllabusi (
-Syllabusi_ID int not null primary key identity(1,1),
+SyllabusiID int not null primary key identity(1,1),
 Kreditet int not null,
 Pershkrimi varchar(1000) not null,
 Literatura varchar(1000) not null,
-Metoda_Vleresimit varchar(100) not null,
-Numri_Oreve int not null,
-Numri_Ushtrimeve int not null,
-Numri_Ligjeratave int not null,
-Aktiv bit not null default 1
+MetodaVleresimit varchar(100) not null,
+NumriUshtrimeve int not null,
+NumriLigjeratave int not null,
+Aktiv bit not null default 1,
+CreatedBy int foreign key references Useri(useriid) not null ,
+ModifiedBy int foreign key references Useri(useriid) null,
+CreatedDate date,
+ModifiedDate date
 )
 
 create table Administratori (
-Administratori_ID int not null primary key identity(1,1),
+AdministratoriID int not null primary key identity(1,1),
 Emri varchar(20) not null,
 Mbiemri varchar(20) not null,
 Email varchar (30) not null,
 Mosha int not null,
-Nr_Telefonit varchar (30) not null,
-Useri int not null foreign key references Useri(Useri_ID),
+NrTelefonit varchar (30) not null,
+Useri int not null foreign key references Useri(UseriID),
 Aktiv bit not null default 1
 )
 
 create table Studenti (
-Studenti_ID int not null primary key identity(1,1),
-Emri varchar(20) not null,
-Mbiemri varchar(20) not null,
-Gjinia char not null,
-Nr_Telefonit varchar (30) not null,
-Email varchar (30) not null,
-Mosha int not null,
-Viti_Akademik varchar(10) not null,
-Modifikuar_Nga int foreign key references Administratori(Administratori_ID),
-Useri int not null foreign key references Useri(Useri_ID),
-Aktiv bit not null default 1
+StudentiID int not null foreign key references personi(personiid),
+VitiAkademik varchar(10) not null
 )
 
 create table Profesori(
-Profesori_ID int not null primary key identity(1,1),
-Emri varchar(20) not null,
-Mbiemri varchar(20) not null,
-Gjinia char not null,
-Nr_Telefonit varchar (30) not null,
-Email varchar (30) not null,
-Mosha int not null,
-Titulli_Akademik varchar (30) not null,
-Modifikuar_Nga int foreign key references Administratori(Administratori_ID),
-Useri int not null foreign key references Useri(Useri_ID),
-Aktiv bit not null default 1
+ProfesoriID int not null foreign key references personi(personiid),
+TitulliAkademik varchar (30) not null
 )
 
-create table Profesori_Kursi(
-Profesori_Kursi_ID int not null primary key identity(1,1),
-Profesori_ID int foreign key references Profesori(Profesori_ID),
-Kursi_ID int foreign key references Kursi(Kursi_ID),
-Syllabusi_ID int foreign key references Syllabusi(Syllabusi_ID)
+create table ProfesoriKursi(
+ProfesoriKursiID int not null primary key identity(1,1),
+ProfesoriID int foreign key references Personi(Personiid),
+KursiID int foreign key references Kursi(KursiID),
+SyllabusiID int foreign key references Syllabusi(SyllabusiID)
 )
 
-insert into User_Group VALUES('0', 'Student')
-insert into User_Group VALUES('1', 'Profesor')
-insert into User_Group VALUES('2', 'Admin')
+insert into UserGroup VALUES('0', 'Student')
+insert into UserGroup VALUES('1', 'Profesor')
+insert into UserGroup VALUES('2', 'Admin')
+
+alter table Personi ADD Menaxheri int foreign key references useri(useriid)
+alter table Personi ADD KrijuarNga int NOT NULL foreign key references useri(useriid)
+alter table Personi ADD ModifikuarNga int foreign key references useri(useriid)
 
 -- PROCEDURAT PER STUDENT
 ----------------------------------------------------------------
 go
 create procedure StudentiSelectByID
 
-@Studenti_ID int
+@StudentiID int
 as
-Select * from Studenti where Studenti_ID = @Studenti_ID and Aktiv = '1'
+Select * 
+from Studenti inner join personi on
+				StudentiID=PersoniID
+where StudentiID = @StudentiID and Aktiv = '1'
 go
 ----------------------------------------------------------------
 create procedure StudentiInsert
-@Emri varchar(20),
-@Mbiemri varchar(20),
-@Gjinia char,
-@Nr_Telefonit varchar(30),
-@Email varchar(30),
-@Mosha int,
-@Viti_Akademik varchar(10),
+@personi int,
+@VitiAkademik varchar(10),
 @Useri int
 
 as
 
-insert into Studenti VALUES(@Emri, @Mbiemri, @Gjinia, @Nr_Telefonit,
-@Email, @Mosha, @Viti_Akademik, null, @Useri, '1')
+insert into Studenti VALUES(@personi,@VitiAkademik)
 
 go
 ----------------------------------------------------------------
 create procedure StudentiUpdate
-@Emri varchar(20),
-@Mbiemri varchar(20),
-@Gjinia char,
-@Nr_Telefonit varchar(30),
-@Email varchar(30),
-@Mosha int,
-@Viti_Akademik varchar(10),
-@Modifikuar_Nga int,
-@Useri int
+@personiid int,
+@VitiAkademik varchar(10)
 
 as
 
-update Studenti set Emri=@Emri, Mbiemri=@Mbiemri, Gjinia=@Gjinia, Nr_telefonit=@Nr_Telefonit,
-Email=@Email, Mosha=@Mosha, Viti_Akademik=@Viti_Akademik, Modifikuar_Nga=@Modifikuar_Nga, Useri=@Useri
+update Studenti set VitiAkademik=@VitiAkademik
+where StudentiID=@personiid
 
 go
 ----------------------------------------------------------------
-create procedure StudentiDelete
-@Studenti_ID int
+--create procedure StudentiDelete
+--@StudentiID int
 
-as
+--as
 
-update Studenti set Aktiv = '0' where Studenti_ID = @Studenti_ID 
+--update Studenti set Aktiv = '0' where StudentiID = @StudentiID 
 
-go
+--go
 ----------------------------------------------------------------
 
 
@@ -147,76 +145,65 @@ go
 ----------------------------------------------------------------
 create procedure ProfesoriSelectByID
 
-@Profesori_ID int
+@ProfesoriID int
 as
-Select * from Profesori where Profesori_ID = @Profesori_ID and Aktiv = '1'
+Select * 
+from Profesori inner join personi on
+				ProfesoriID=PersoniID
+where ProfesoriID= @profesoriid and Aktiv = '1'
 go
 ----------------------------------------------------------------
 create procedure ProfesoriInsert
-@Emri varchar(20),
-@Mbiemri varchar(20),
-@Gjinia char,
-@Nr_Telefonit varchar(30),
-@Email varchar(30),
-@Mosha int,
-@Titulli_Akademik varchar(10),
-@Useri int
+@ProfesoriID int,
+@TitulliAkademik varchar(10)
 
 as
 
-insert into Profesori VALUES(@Emri, @Mbiemri, @Gjinia, @Nr_Telefonit,
-@Email, @Mosha, @Titulli_Akademik, null, @Useri, '1')
+insert into Profesori VALUES(@ProfesoriID, @TitulliAkademik)
 
 go
 ----------------------------------------------------------------
 create procedure ProfesoriUpdate
-@Emri varchar(20),
-@Mbiemri varchar(20),
-@Gjinia char,
-@Nr_Telefonit varchar(30),
-@Email varchar(30),
-@Mosha int,
-@Titulli_Akademik varchar(10),
-@Modifikuar_Nga int,
-@Useri int
+@ProfesoriID int,
+@TitulliAkademik varchar(10)
 
 as
 
-update Profesori set Emri=@Emri, Mbiemri=@Mbiemri, Gjinia=@Gjinia, Nr_telefonit=@Nr_Telefonit,
-Email=@Email, Mosha=@Mosha, Titulli_Akademik=@Titulli_Akademik, Modifikuar_Nga=@Modifikuar_Nga, Useri=@Useri
+update Profesori set TitulliAkademik=@TitulliAkademik
+where ProfesoriID=@ProfesoriID
 
 go
 ----------------------------------------------------------------
-create procedure ProfesoriDelete
-@Profesori_ID int
+--create procedure ProfesoriDelete
+--@ProfesoriID int
 
-as
+--as
 
-update Profesori set Aktiv = '0' where Profesori_ID = @Profesori_ID 
+--update Profesori set Aktiv = '0' where ProfesoriID = @ProfesoriID 
 
-go
+--go
 ----------------------------------------------------------------
 
 
---PROCEDURAT PER User_Group
+--PROCEDURAT PER UserGroup
 ----------------------------------------------------------------
 create procedure UserGroupSelectByID
 @Prioriteti int
 
 as
 
-Select * from User_Group where Prioriteti = @Prioriteti
+Select * from UserGroup where Prioriteti = @Prioriteti
 go
 ----------------------------------------------------------------
 
 --PROCEDURAT PER Useri
 ----------------------------------------------------------------
 create procedure UseriSelectByID
-@Useri_ID int
+@UseriID int
 
 as
 
-select * from Useri where Useri_ID = @Useri_ID
+select * from Useri where UseriID = @UseriID
 
 go
 ----------------------------------------------------------------
@@ -224,11 +211,11 @@ go
 --PROCEDURAT PER Programi
 ----------------------------------------------------------------
 create procedure ProgramiSelectByID
-@Programi_ID int
+@ProgramiID int
 
 as
 
-select * from Programi where Programi_ID = @Programi_ID
+select * from Programi where ProgramiID = @ProgramiID
 
 go
 ----------------------------------------------------------------
@@ -236,11 +223,11 @@ go
 --PROCEDURAT PER Kursi
 ----------------------------------------------------------------
 create procedure KursiSelectByID
-@Kursi_ID int
+@KursiID int
 
 as
 
-select * from Kursi where Kursi_ID = @Kursi_ID
+select * from Kursi where KursiID = @KursiID
 
 go
 ----------------------------------------------------------------
@@ -248,11 +235,11 @@ go
 --PROCEDURAT PER Kursi
 ----------------------------------------------------------------
 create procedure SyllabusiSelectByID
-@Syllabusi_ID int
+@SyllabusiID int
 
 as
 
-select * from Syllabusi where Syllabusi_ID = @Syllabusi_ID
+select * from Syllabusi where SyllabusiID = @SyllabusiID
 
 go
 ----------------------------------------------------------------
@@ -260,11 +247,11 @@ go
 --PROCEDURAT PER Kursi
 ----------------------------------------------------------------
 create procedure AdministratoriSelectByID
-@Administratori_ID int
+@AdministratoriID int
 
 as
 
-select * from Administratori where Administratori_ID = @Administratori_ID
+select * from Administratori where AdministratoriID = @AdministratoriID
 
 go
 ----------------------------------------------------------------

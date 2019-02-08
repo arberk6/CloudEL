@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    class Useri : Default
+    class Useri
     {
         public int UseriID { get; set; }
         public int PersoniID { get; set; }
