@@ -13,5 +13,9 @@ namespace CEL.Views.Studenti
         {
 
         }
+
+        protected void Profili_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

@@ -17,7 +17,7 @@ namespace DAL
             s = new Studenti();
             s.PersoniID = studentiid;
 
-            s.MakeRequest(profesorikursiid, s.PersoniID);
+            //s.MakeRequest(profesorikursiid, s.PersoniID);
         }
     }
 }
