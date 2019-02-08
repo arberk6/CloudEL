@@ -51,6 +51,7 @@
     <Compile Include="ProfesoriKursi.cs" />
     <Compile Include="Programi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Punetori.cs" />
     <Compile Include="Studenti.cs" />
     <Compile Include="Syllabusi.cs" />
     <Compile Include="Useri.cs" />
