@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 using System.Configuration;
 
-namespace DAL
+namespace BLL
 {
     public static class Generals
     {
