@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    class Profesori : Personi
+    public class Profesori : Personi
     {
         public String TitulliAkademik { get; set; }
     }

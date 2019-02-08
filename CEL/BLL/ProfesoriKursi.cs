@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    class ProfesoriKursi : Default
+    public class ProfesoriKursi : Default
     {
         public int ProfesoriKursiID { get; set; }
         public int ProfesoriID { get; set; }

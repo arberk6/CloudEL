@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    class Syllabusi : Default
+    public class Syllabusi : Default
     {
         public int SyllabusiID { get; set; }
         public double Kreditet { get; set; }
