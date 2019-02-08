@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CEL.Views
+namespace Views
 {
-    public partial class login : System.Web.UI.Page
+    public partial class Login : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +29,7 @@ namespace CEL.Views
 
         public Boolean ValidateData()
         {
-            Session["User_Id"] = email.Text;
+            Session["User_Id"] = username.Text;
             //UseriMapper um = new UseriMapper(new Useri());
             return false;//um.Validate(email.Text, password.Text);
         }
