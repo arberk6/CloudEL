@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CEL.Views.Studenti {
+namespace CEL.Views.StudentiView {
     
     
-    public partial class ZgjedhKurset {
+    public partial class Profili {
         
         /// <summary>
         /// Lenda control.

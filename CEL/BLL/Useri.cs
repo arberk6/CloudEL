@@ -34,11 +34,11 @@ namespace BLL
                 while (rdr.Read())
                 {
                     useri = new Useri();
-                    useri.UseriID= (int)rdr["UseriID"];
-                    useri.Username= rdr["Username"].ToString();
-                    useri.Passwordi= rdr["Passwordi"].ToString();
-                    useri.Prioriteti= (int)rdr["Prioriteti"];
-                    useri.PersoniID= (int)rdr["PersoniID"];
+                    useri.UseriID = (int)rdr["UseriID"];
+                    useri.Username = rdr["Username"].ToString();
+                    useri.Passwordi = rdr["Passwordi"].ToString();
+                    useri.Prioriteti = (int)rdr["Prioriteti"];
+                    useri.PersoniID = (int)rdr["PersoniID"];
                     if (rdr["CreatedBy"] != DBNull.Value)
                         useri.CreatedBy = (int)rdr["CreatedBy"];
                     if (rdr["CreatedDate"] != DBNull.Value)
@@ -55,5 +55,42 @@ namespace BLL
             }
             return useri;
         }
+
+        public InternalUser UseriSelectByEmail(string email)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            InternalUser user = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("UseriSelectByEmail", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@UseriID", email);
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    user.email=rdr["email"].ToString();
+                    user.password = rdr["Passwordi"].ToString();
+                    user.id=(int)rdr["personiid"];
+                    user.role= rdr["Roli"].ToString();
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
+        }
+    }
+
+    public class InternalUser {
+        public string email { get; set; }
+        public string password { get; set; }
+        public int id{ get; set; }
+        public string role{ get; set; }
+
+        public InternalUser() { }
     }
 }

@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CEL.Views.Studenti {
+namespace CEL.Views.StudentiView {
     
     
-    public partial class Studenti {
+    public partial class Student {
         
         /// <summary>
         /// head control.

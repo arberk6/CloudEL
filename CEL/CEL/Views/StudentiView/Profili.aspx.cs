@@ -4,20 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DAL;
 
-namespace CEL.Views.Studenti
+namespace CEL.Views.StudentiView
 {
-    public partial class Studenti : System.Web.UI.MasterPage
+    public partial class Profili : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void Profili_Click(object sender, EventArgs e)
+        private void MbushTeDhenat()
         {
-            new StudentiMapper().makeRequest();
         }
     }
 }

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using DAL;
 using System.Web.UI.WebControls;
-using BLL;
+
 
 namespace CEL.Views
 {
@@ -17,21 +18,35 @@ namespace CEL.Views
 
         protected void Login(object sender, EventArgs e)
         {
-            if (!ValidateData())
+            string[] validate = ValidateData();
+            if (validate == null)
             {
                 alert.Style.Add("display", "block");
                 return;
             }
-            else
+            else if(validate[3]=="Student")
             {
+                Session["UserID"] = validate[0];
                 Response.Redirect("Studenti/Profili.aspx");
+            }
+            else if (validate[3] == "Profesor")
+            {
+                Session["UserID"] = validate[0];
+                //to be continued
             }
         }
 
-        public Boolean ValidateData()
+        /// <summary>
+        /// check database for username and match with the password
+        /// and fill Session id user logs in
+        /// </summary>
+        /// <returns>
+        /// if they dont match:  -1
+        /// if they match: int userid
+        /// </returns>
+        public string[] ValidateData()
         {
-            //UseriMapper um = new UseriMapper(new Useri());
-            return false;//um.Validate(email.Text, password.Text);
+            return new UseriMapper().Validate(email.Text, password.Text);
         }
     }
 }

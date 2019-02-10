@@ -18,7 +18,7 @@ namespace HR_Management_V1._3.Views.PunetoriView
 
         private void placeShenimet()
         {
-            new PunetoriMapper().SelectByID;
+            new PunetoriMapper().SelectByID(5);
 
         }
 

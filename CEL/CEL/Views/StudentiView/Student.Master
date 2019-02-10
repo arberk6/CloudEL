@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Student.master.cs" Inherits="CEL.Views.StudentiView.Student" %>
 
 <html>
 <head runat="server">

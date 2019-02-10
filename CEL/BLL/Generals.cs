@@ -7,7 +7,7 @@ namespace BLL
     public static class Generals
     {
         static public SqlConnection GetNewConnection()
-        {
+        {//simple factory pattern
             string conStr = ConfigurationManager.ConnectionStrings["connection"].ConnectionString;
 
             SqlConnection con = new SqlConnection(conStr);

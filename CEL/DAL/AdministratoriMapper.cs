@@ -16,7 +16,7 @@ namespace DAL
         }
 
         public void aproveRequest(int kerkesaid) {
-            new Administratori().Aprovo(userid);
+            new Administratori().Aprovo(kerkesaid);
         }
     }
 }

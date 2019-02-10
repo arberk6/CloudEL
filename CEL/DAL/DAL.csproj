@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AA834F60-16DB-408E-B160-3CC9A6827D98}</ProjectGuid>
+    <ProjectGuid>{A316AB8B-47C4-474A-8D4F-656E754E6968}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DAL</RootNamespace>
@@ -32,8 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,13 +43,14 @@
   <ItemGroup>
     <Compile Include="AdministratoriMapper.cs" />
     <Compile Include="KursiMapper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PunetoriMapper.cs" />
     <Compile Include="StudentiMapper.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseriMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{d6ba4b36-45f0-4a1d-a380-0f153422f370}</Project>
+      <Project>{5e502651-cb30-4bc6-aeaa-c365b9f90e48}</Project>
       <Name>BLL</Name>
     </ProjectReference>
   </ItemGroup>

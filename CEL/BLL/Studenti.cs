@@ -73,23 +73,21 @@ namespace BLL
 
                 SqlDataReader rdr = cmd.ExecuteReader();
 
-                SqlCommand cmdpersoni = new SqlCommand("getKurset", con);
-                cmdpersoni.CommandType = CommandType.StoredProcedure;
-                SqlDataReader rdrpersoni = cmd.ExecuteReader();
+                
 
-                List<int> requests = new List<String>();
+                List<String> requests = new List<String>();
 
                 while (rdr.Read())
                 {
-                    requests.Add((int)rdrpersoni["ProfesoriID"]);
-                    requests.Add((int)rdrpersoni["KursiID"]);
+                    requests.Add(((int)rdr["ProfesoriID"]).ToString());
+                    requests.Add(((int)rdr["KursiID"]).ToString());
                 }
             }
             finally
             {
                 con.Close();
             }
-            return requests;
+            return null;
         }
     }
 }

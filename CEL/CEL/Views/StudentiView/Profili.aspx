@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Login.Master" AutoEventWireup="true" CodeBehind="ZgjedhKurset.aspx.cs" Inherits="CEL.Views.Studenti.ZgjedhKurset" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/StudentiView/Student.Master" AutoEventWireup="true" CodeBehind="Profili.aspx.cs" Inherits="CEL.Views.StudentiView.Profili" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

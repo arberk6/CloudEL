@@ -1,9 +1,14 @@
 --drop database ELearning
+--create database ELearning
 --use ELearning
 create table UserGroup (
 Prioriteti int not null primary key,
 Roli varchar(10) not null
 )
+
+insert into UserGroup VALUES('0', 'Student')
+insert into UserGroup VALUES('1', 'Profesor')
+insert into UserGroup VALUES('2', 'Admin')
 
 create table Personi(
 PersoniID int primary key not null identity (1,1),
@@ -11,21 +16,30 @@ Emri varchar(20) not null,
 Mbiemri varchar(20) not null,
 Gjinia char not null,
 NrTelefonit varchar (30) not null,
-Email varchar (30) not null,
+Email varchar (30) not null unique,
 Mosha int not null,
 Aktiv bit not null default 1
 )
+
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('test','test','m','123123123','test@test.com',1)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('arber','arber','m','321321321','arber@test.com',12)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('baba','baba','m','04923232','baba@test.com',19)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('tezja','tezja','f','123122321','tezja@test.com',30)
+go
+
 create table Useri (
 UseriID int not null primary key identity(1,1),
 Username varchar(20) not null,
 Passwordi varchar(20) not null,
 Prioriteti int foreign key references UserGroup(Prioriteti),
 personi int foreign key references personi(personiid) not null,
-CreatedBy int foreign key references Useri(useriid) not null ,
+CreatedBy int foreign key references Useri(useriid) null ,
 ModifiedBy int foreign key references Useri(useriid) null,
 CreatedDate date,
 ModifiedDate date
 )
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('tester','test',1,1)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('arber','arber',2,2)
 
 create table Programi(
 ProgramiID int not null primary key identity(1,1),
@@ -93,12 +107,10 @@ CreatedBy int foreign key references Useri(useriid) not null ,
 CreatedDate date
 )
 
-insert into UserGroup VALUES('0', 'Student')
-insert into UserGroup VALUES('1', 'Profesor')
-insert into UserGroup VALUES('2', 'Admin')
+
 
 alter table Personi ADD Menaxheri int foreign key references useri(useriid)
-alter table Personi ADD KrijuarNga int NOT NULL foreign key references useri(useriid)
+alter table Personi ADD KrijuarNga int NULL foreign key references useri(useriid)
 alter table Personi ADD ModifikuarNga int foreign key references useri(useriid)
 alter table Request add aprovuar bit default 0
 
@@ -214,6 +226,19 @@ select * from Useri where UseriID = @UseriID
 
 go
 ----------------------------------------------------------------
+create procedure UseriSelectByEmail
+@email varchar(255)
+
+as
+
+select personiid,email,Passwordi,Roli from Useri u inner join Personi p
+											on personi=PersoniID
+											inner join UserGroup ug
+											on u.Prioriteti=ug.Prioriteti
+where email = @email
+
+go
+----------------------------------------------------------------
 
 --PROCEDURAT PER Programi
 ----------------------------------------------------------------
@@ -262,7 +287,7 @@ select * from Administratori where AdministratoriID = @AdministratoriID
 
 go
 ----------------------------------------------------------------
-procedurat per Personin
+--procedurat per Personin
 ----------------------------------------------------------------
 create procedure PersoniSelectByID
 @personiid int
@@ -283,9 +308,9 @@ as
 insert into Personi(PersoniID,Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha) values(@PersoniID, @Emri,@Mbiemri,@Gjinia,@NrTelefonit,@Email,@Mosha)
 go
 ----------------------------------------------------------------
-procedura per request
+--procedura per request
 ---------------------------------------------------
-alter procedure MakeRequest
+create procedure MakeRequest
 @ProfesoriKursi int,
 @studenti int
 as
