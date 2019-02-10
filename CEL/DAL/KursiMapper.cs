@@ -9,10 +9,10 @@ namespace DAL
 {
     class KursiMapper
     {
-        public Kursi GetKursiByProfesoriID(int profesori)
+        public List<Kursi> GetKursiByProfesoriID(int profesori)
         {
             ProfesoriKursi k = new ProfesoriKursi();
-            return k.GetKursiByProfesoriID(profesori);
+            return k.GetKursetByProfesoriID(profesori);
         }
     }
 }

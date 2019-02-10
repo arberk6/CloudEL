@@ -24,14 +24,21 @@ namespace CEL.Views
                 alert.Style.Add("display", "block");
                 return;
             }
-            else if(validate[3]=="Student")
+
+            Session["UserID"] = validate[0];
+
+            if (validate[3]=="Student")
             {
-                Session["UserID"] = validate[0];
-                Response.Redirect("Studenti/Profili.aspx");
+                Response.Redirect("StudentiView/Profili.aspx");
             }
             else if (validate[3] == "Profesor")
             {
-                Session["UserID"] = validate[0];
+                Response.Redirect("ProfesoriView/Profili.aspx");
+                //to be continued
+            }
+            else if (validate[3] == "Admin")
+            {
+                Response.Redirect("ProfesoriView/Profili.aspx");
                 //to be continued
             }
         }

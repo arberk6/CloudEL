@@ -337,6 +337,16 @@ update request set aprovuar=1
 where requestid=@requestid
 go
 
+---------------------------------------------------------------
+
+create procedure GetStudentsByProfesoriID
+@profesoriid int
+as
+update request set aprovuar=1
+where requestid=@requestid
+go
+
+
 ------------------------------------------
 create procedure GetKursiByProfesoriID
 @profesoriid int

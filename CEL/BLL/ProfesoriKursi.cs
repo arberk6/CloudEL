@@ -15,10 +15,10 @@ namespace BLL
         public int KursiID { get; set; }
         public int SyllabusiID { get; set; }
 
-        public Kursi GetKursiByProfesoriID(int profesori)
+        public List<Kursi> GetKursetByProfesoriID(int profesori)
         {
             SqlConnection con = Generals.GetNewConnection();
-            Kursi kursi = null;
+            List<Kursi> kurset = new List<Kursi>();
             try
             {
                 SqlCommand cmd = new SqlCommand("GetKursiByProfesoriID", con);
@@ -28,7 +28,7 @@ namespace BLL
                 
                 while (rdr.Read())
                 {
-                    kursi = new Kursi();
+                    Kursi kursi = new Kursi();
                     kursi.KursiID = (int)rdr["KursiID"];
                     kursi.Emri = rdr["Emri"].ToString();
                     kursi.Aktiv = rdr["Aktiv"].ToString().Equals("1");
@@ -40,13 +40,14 @@ namespace BLL
                         kursi.ModifiedBy = (int)rdr["ModifiedBy"];
                     if (rdr["ModifiedDate"] != DBNull.Value)
                         kursi.ModifiedDate = rdr["ModifiedDate"].ToString();
+                    kurset.Add(kursi);
                 }
             }
             finally
             {
                 con.Close();
             }
-            return kursi;
+            return kurset;
         }
     }
 }
