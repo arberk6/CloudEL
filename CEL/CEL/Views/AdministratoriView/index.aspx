@@ -67,14 +67,14 @@
                 <%--aprovo--%>
                 <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
+                        <asp:Button class="btn btn-primary" ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
                     </ItemTemplate>
                 </asp:TemplateField>
                
                 <%--refuzo--%>
                 <asp:TemplateField HeaderText="Refuzo" ItemStyle-Width="10px"  InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button ID="refuzoButton" text="refuzo" runat="server" CommandName="refuzo" CommandArgument='<%# Bind("requestid") %>' ToolTip="refuzo"  />
+                        <asp:Button class="btn btn-danger" ID="refuzoButton" text="refuzo" runat="server" CommandName="refuzo" CommandArgument='<%# Bind("requestid") %>' ToolTip="refuzo"  />
                     </ItemTemplate>
                 </asp:TemplateField>
 
