@@ -15,16 +15,16 @@
             <div>
                 <asp:ImageButton ID="Logo" ImageUrl="~/img/logo.png" runat="server" ToolTip="Hr Managment" Width="180px" Height="60px" />
                 <asp:Button CssClass="ProfiliButton" ID="Profili" OnClick="Profili_Click" runat="server" Text="Profili" />
-                <asp:Button CssClass="RegjistroKursetButton" ID="RegjistroKurset" OnClick="RegjistroKurset_Click" runat="server" Text="RegjistroKurset" />
+                <asp:Button CssClass="Kurset" ID="Kurset" OnClick="Kurset_Click" runat="server" Text="Kurset" />
             </div>
             <%--SideBar--%>
-            <div id="SideBar" class="sidebar" runat="server">
+           <%-- <div id="SideBar" class="sidebar" runat="server">
                 <asp:LinkButton id="ProfiliLinkButton" runat="server" OnClick="Profili_Click">Profili</asp:LinkButton>
-                <asp:LinkButton id="PjesemarrjaLinkButton" runat="server" OnClick="Pjesemarrja_Click">Pjesëmarrja</asp:LinkButton>
+                <asp:LinkButton id="PjesemarrjaLinkButton" runat="server">Pjesëmarrja</asp:LinkButton>
                 <asp:LinkButton id="RaportetLinkButton" runat="server" OnClick="Raportet_Click">Raportet</asp:LinkButton>
                 <asp:LinkButton id="KontrataLinkButton" runat="server" OnClick="Kontrata_Click">Kontrata</asp:LinkButton>
                 <asp:LinkButton id="DilLinkButton" runat="server" OnClick="Dil_Click">Dil</asp:LinkButton>
-            </div>
+            </div>--%>
         </header>
 
         <%--Content--%>

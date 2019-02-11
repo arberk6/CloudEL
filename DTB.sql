@@ -165,16 +165,15 @@ ProfesoriKursi int not null foreign key references ProfesoriKursi(ProfesoriKursi
 studenti int not null foreign key references Personi(personiID),
 aprovuarNgaAdministratori varchar(20) not null ,
 aprovuarNgaProfesori varchar(20) not null ,
-CreatedBy int foreign key references Useri(useriid) not null ,
 CreatedDate date
 )
 --insert data
-insert into request values(1,5,'waiting','waiting',5,null)
-insert into request values(3,5,'waiting','waiting',5,null)
-insert into request values(2,6,'waiting','waiting',6,null)
-insert into request values(3,7,'waiting','waiting',7,null)
-insert into request values(1,8,'waiting','waiting',8,null)
-insert into request values(1,9,'waiting','waiting',9,null)
+insert into request values(1,5,'waiting','waiting',null)
+insert into request values(3,5,'waiting','waiting',null)
+insert into request values(2,6,'waiting','waiting',null)
+insert into request values(3,7,'waiting','waiting',null)
+insert into request values(1,8,'waiting','waiting',null)
+insert into request values(1,9,'waiting','waiting',null)
 
 create table profaKursiStudenti
 (
@@ -247,6 +246,18 @@ Select *
 from Profesori inner join personi on
 				ProfesoriID=PersoniID
 where ProfesoriID= @profesoriid and Aktiv = '1'
+go
+----------------------------------------------------------------
+create procedure ProfesoriSelectByEmriAndMbiemri
+
+@EmriProfes varchar(10),
+@MbiemriProfes varchar(10)
+
+as
+
+Select ProfesoriID from Profesori p
+inner join Personi pers on p.ProfesoriID = pers.PersoniID
+where pers.Emri = @EmriProfes AND pers.Mbiemri = @MbiemriProfes
 go
 ----------------------------------------------------------------
 create procedure ProfesoriInsert
@@ -423,6 +434,19 @@ where requestid=@requestid
 go
 
 ---------------------------------------------------------------
+create procedure SelectAllRequestsByStudentiID
+
+@StudentiID int
+
+as
+
+Select r.CreatedDate as 'RequestCreatedDate', pers.Emri as 'EmriProfes', pers.Mbiemri as 'MbiemriProfes', k.Emri as 'EmriKursit', r.aprovuarNgaAdministratori, r.aprovuarNgaProfesori
+from request r
+inner join ProfesoriKursi pk on r.ProfesoriKursi = pk.ProfesoriKursiID
+
+--Per profen
+inner join Profesori p on pk.ProfesoriID = p.profesoriID
+inner join Personi pers on pk.ProfesoriID = pers.PersoniID
 create procedure requestDeniedByAdministratori
 @requestid int
 as
@@ -458,6 +482,12 @@ update request set
 aprovuarNgaAdministratori='denied'
 where ProfesoriKursi=@ProfesoriKursiid
 go
+--Per kursin
+inner join Kursi k on pk.KursiID = k.KursiID
+
+where r.studenti = @StudentiID
+go
+---------------------------------------------------------------
 
 --------------------------------------------------------------
 create procedure getRequestsByProfesoriKursi
@@ -495,11 +525,22 @@ go
 
 select * from request
 ----------------------------------------------------------------
+create procedure GetStudentsRequestByProfesoriIDKursiID
+@profesoriid int,
+@kursiid int
+as
+select Personi.*, Studenti.VitiAkademik, request.requestid from Personi join Studenti on Personi.PersoniID = Studenti.StudentiID 
+join request on Studenti.StudentiID = request.studenti
+join ProfesoriKursi on ProfesoriKursi.ProfesoriKursiID = request.ProfesoriKursi
+join Profesori on Profesori.ProfesoriID = ProfesoriKursi.ProfesoriID 
+where Profesori.ProfesoriID = @profesoriid and ProfesoriKursi.KursiID = @kursiid 
+go
+
 create procedure GetStudentsByProfesoriIDKursiID
 @profesoriid int,
 @kursiid int
 as
-select Personi.* from Personi join Studenti on Personi.PersoniID = Studenti.StudentiID 
+select Personi.*, Studenti.VitiAkademik, request.requestid from Personi join Studenti on Personi.PersoniID = Studenti.StudentiID 
 join request on Studenti.StudentiID = request.studenti
 join ProfesoriKursi on ProfesoriKursi.ProfesoriKursiID = request.ProfesoriKursi
 join Profesori on Profesori.ProfesoriID = ProfesoriKursi.ProfesoriID 
@@ -512,4 +553,54 @@ create procedure GetKursiByProfesoriID
 as
 select * from ProfesoriKursi
 where ProfesoriID=@profesoriid
+go
+------------------------------------------
+create procedure SelectAllKurset
+as
+select k.Emri as 'EmriKursit', pers.Emri, pers.Mbiemri, s.Kreditet, s.NumriLigjeratave, s.NumriUshtrimeve, k.KursiID  from ProfesoriKursi pk
+inner join Profesori p on pk.ProfesoriID = p.ProfesoriID
+inner join Personi pers on p.ProfesoriID = pers.PersoniID
+inner join Kursi k on pk.KursiID = k.KursiID
+inner join Syllabusi s on pk.SyllabusiID = s.SyllabusiID
+where k.Aktiv = '1'
+go
+------------------------------------------
+create procedure selectProfesoriKursiByEmriKursit
+@Emri varchar
+
+as
+
+select k.Emri as 'EmriKursit', pers.Emri, pers.Mbiemri, s.Kreditet, s.NumriLigjeratave, s.NumriUshtrimeve, k.KursiID  from ProfesoriKursi pk
+inner join Profesori p on pk.ProfesoriID = p.ProfesoriID
+inner join Personi pers on p.ProfesoriID = pers.PersoniID
+inner join Kursi k on pk.KursiID = k.KursiID
+inner join Syllabusi s on pk.SyllabusiID = s.SyllabusiID
+where k.Aktiv = '1' and k.Emri = @Emri
+go
+------------------------------------------
+create procedure SelectLendaByEmri
+
+@Emri varchar(20)
+
+as
+
+Select KursiID from Kursi where Emri = @Emri
+go
+------------------------------------------
+create procedure GetProfKursiByProfIDandKursiID
+@ProfesoriID int,
+@KursiID int
+
+as
+Select ProfesoriKursiID from ProfesoriKursi where ProfesoriID = @ProfesoriID AND KursiID = @KursiID
+go
+------------------------------------------
+create procedure InsertRequest
+@ProfesoriKursiID int,
+@StudentiID int
+
+as
+
+insert into request VALUES(@ProfesoriKursiID, @StudentiID, '0', '0', GETDATE())
+
 go

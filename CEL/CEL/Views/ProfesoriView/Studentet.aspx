@@ -4,6 +4,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <asp:DropDownList ID="FilterKerkimiDropDown"  runat="Server" Height="28px" Width="172px">
+            <asp:ListItem>Te gjitha</asp:ListItem>
+        </asp:DropDownList>
+
      <asp:GridView ID="ListGridView" runat="server"
             CellPadding="4" ForeColor="#333333"
             CssClass="table table-striped table-bordered table-condensed"
@@ -64,21 +68,6 @@
                 <asp:TemplateField HeaderText="Email" InsertVisible="False">
                     <ItemTemplate>
                         <asp:Label ID="Label1" Text='<%# Bind("Kursi") %>' runat="Server" />
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-                <%--EDITO--%>
-                <asp:TemplateField HeaderText="Prano" ItemStyle-Width="10px" InsertVisible="False">
-                    <ItemTemplate>
-                        <asp:Button class="btn btn-primary" ID="PranoButton" Text="Prano" runat="server" CommandName="Ndrysho" CommandArgument='<%# Bind("IDPunetori") %>'/>
-                    </ItemTemplate>
-                </asp:TemplateField>
-
-
-                <%--FSHIJ--%>
-                <asp:TemplateField HeaderText="Fshij" ItemStyle-Width="10px" InsertVisible="False">
-                    <ItemTemplate>
-                        <asp:Button class="btn btn-danger" ID="FshijButton" Text="Fshij" runat="server" CommandName="Fshij" CommandArgument='<%# Bind("IDPunetori") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 

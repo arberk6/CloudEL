@@ -91,7 +91,7 @@ namespace BLL
 
             try
             {
-                SqlCommand cmd = new SqlCommand("GetStudentsByProfesoriID", con);
+                SqlCommand cmd = new SqlCommand("GetStudentsRequestByProfesoriIDKursiID", con);
                 cmd.Parameters.AddWithValue("@Profesoriid", profesori);
                 cmd.Parameters.AddWithValue("@kursiid", kursi);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -102,6 +102,7 @@ namespace BLL
                 {
                     StudentiKerkesa studenti = new StudentiKerkesa();
                     string vitiakademik = rdr["VitiAkademik"].ToString();
+                    studenti.kerkesaID = (int)rdr["requestid"];
                     studenti.PersoniID = (int)rdr["PersoniID"];
                     studenti.Emri = rdr["Emri"].ToString();
                     studenti.Mbiemri = rdr["Mbiemri"].ToString();

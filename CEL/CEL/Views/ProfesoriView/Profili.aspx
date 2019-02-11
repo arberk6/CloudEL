@@ -3,5 +3,8 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    Profilii i profes
+    <ul id="list" runat="server" class="list-group">
+        <li class="list-group-item active">Lendet Tuaja:</li>
+    </ul>
+   
 </asp:Content>

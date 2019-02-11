@@ -1,11 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/StudentiView/Student.Master" AutoEventWireup="true" CodeBehind="ZgjedhKurset.aspx.cs" Inherits="CEL.Views.StudentiView.ZgjedhKurset" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/StudentiView/Student.Master" AutoEventWireup="true" CodeBehind="AplikoPerKurse.aspx.cs" Inherits="CEL.Views.StudentiView.AplikoPerKurse" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-        <asp:button runat="server" text="Regjistro kurse" OnClick="Apliko_Click" />
+        <asp:TextBox id="SearchTextBox" runat="server" />
+        <asp:Button id="SearchButton" runat="server" text="Kerko kursin" OnClick="SearchButton_Click" />
+        <span>* Kerko ne baze te emrit</span>
     </div>
-  
+
     <div><asp:GridView ID="ListGridView" runat="server"
             CellPadding="4" ForeColor="#333333"
             CssClass="table table-striped table-bordered table-condensed"
@@ -15,6 +17,7 @@
             AutoGenerateColumns="False"
             Width="100%"
             EditIndex="1"
+            OnRowCommand="ListGridView_RowCommand"
             EnableViewState="False">
             <PagerSettings PageButtonCount="20" FirstPageText="fillimi" LastPageText="fundi" />
             <RowStyle HorizontalAlign="Center" />
@@ -44,33 +47,37 @@
                 </asp:TemplateField>
 
                 <%--Emri dhe mbiemri i profesorit--%>
-                <asp:TemplateField HeaderText="Profesori" ItemStyle-Width="15%" InsertVisible="False">
+                <asp:TemplateField HeaderText="Profesori" ItemStyle-Width="20%" InsertVisible="False">
                     <ItemTemplate>
                         <asp:Label ID="EmriProfes" runat="server" Text='<%# Bind("EmriProfes") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
-
-                <%--Data e aplikimit--%>
-                <asp:TemplateField HeaderText="Data e aplikimit" ItemStyle-Width="10%" InsertVisible="False">
+                <%--Kreditet--%>
+                <asp:TemplateField HeaderText="Kreditet" ItemStyle-Width="10%" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Label ID="RequestCreatedDate" Text='<%# Bind("RequestCreatedDate") %>' runat="Server" />
+                        <asp:Label ID="Kreditet" runat="server" Text='<%# Bind("Kreditet") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
-
-                <%--Aprovuar nga Profesori--%>
-                <asp:TemplateField HeaderText="Aprovuar nga profesori" ItemStyle-Width="15%" InsertVisible="False">
+                <%--Nr i Ligjeratave--%>
+                <asp:TemplateField HeaderText="Numri i ligj." ItemStyle-Width="10%" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Label ID="aprovuarNgaProfesori" Text='<%# Bind("aprovuarNgaProfesori") %>' runat="Server" />
+                        <asp:Label ID="NumriLigjeratave" runat="server" Text='<%# Bind("NumriLigjeratave") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
-
-                <%--Aprovuar nga Administratori--%>
-                <asp:TemplateField HeaderText="Aprovuar nga administratori" ItemStyle-Width="15%" InsertVisible="False">
+                <%--Nr i Ushtrimeve--%>
+                <asp:TemplateField HeaderText="Numri i ushtr." ItemStyle-Width="10%" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Label ID="aprovuarNgaAdministratori" Text='<%# Bind("aprovuarNgaAdministratori") %>' runat="Server" />
+                        <asp:Label ID="NumriUshtrimeve" runat="server" Text='<%# Bind("NumriUshtrimeve") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <%--Apliko ne kete kurse--%>
+                <asp:TemplateField HeaderText="Apliko" ItemStyle-Width="5%" InsertVisible="False">
+                    <ItemTemplate>
+                        <asp:ImageButton ID="AplikoKursinButton" ImageUrl="~/Img/edit.png" runat="server" CommandName="Ndrysho" CommandArgument='<%# Bind("KursiID") %>' ToolTip="Apliko" Width="20px" Height="20px" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

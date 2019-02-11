@@ -13,21 +13,12 @@ namespace CEL.Views.StudentiView {
     public partial class ZgjedhKurset {
         
         /// <summary>
-        /// Lenda control.
+        /// ListGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Lenda;
-        
-        /// <summary>
-        /// Profesori control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Profesori;
+        protected global::System.Web.UI.WebControls.GridView ListGridView;
     }
 }

@@ -7,19 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CEL.Views.ProfesoriView {
+namespace CEL.Views.StudentiView {
     
     
-    public partial class Studentet {
+    public partial class AplikoPerKurse {
         
         /// <summary>
-        /// FilterKerkimiDropDown control.
+        /// SearchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList FilterKerkimiDropDown;
+        protected global::System.Web.UI.WebControls.TextBox SearchTextBox;
+        
+        /// <summary>
+        /// SearchButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SearchButton;
         
         /// <summary>
         /// ListGridView control.
