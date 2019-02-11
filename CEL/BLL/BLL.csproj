@@ -48,6 +48,7 @@
     <Compile Include="Generals.cs" />
     <Compile Include="Kursi.cs" />
     <Compile Include="Personi.cs" />
+    <Compile Include="ProfaKursiStudenti.cs" />
     <Compile Include="Profesori.cs" />
     <Compile Include="ProfesoriKursi.cs" />
     <Compile Include="Programi.cs" />

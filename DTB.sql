@@ -438,6 +438,17 @@ where requestid=@requestid
 go
 
 
+create procedure GetStudentsRequestByProfesoriIDKursiID
+@profesoriid int,
+@kursiid int
+as
+select Personi.*, Studenti.VitiAkademik, request.requestid from Personi join Studenti on Personi.PersoniID = Studenti.StudentiID 
+join request on Studenti.StudentiID = request.studenti
+join ProfesoriKursi on ProfesoriKursi.ProfesoriKursiID = request.ProfesoriKursi
+join Profesori on Profesori.ProfesoriID = ProfesoriKursi.ProfesoriID 
+where Profesori.ProfesoriID = @profesoriid and ProfesoriKursi.KursiID = @kursiid 
+go
+
 create procedure GetStudentsByProfesoriIDKursiID
 @profesoriid int,
 @kursiid int

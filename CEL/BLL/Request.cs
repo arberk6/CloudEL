@@ -49,14 +49,14 @@ namespace BLL
             return requestlist;
         }
 
-        public List<StudentiKerkesa> GetStudentsByProfesoriIDKursiID(int profesori, int kursi, String emriKursit)
+        public List<StudentiKerkesa> GetStudentsRequestsByProfesoriKursi(int profesori, int kursi, String emriKursit)
         {
             SqlConnection con = Generals.GetNewConnection();
             List<StudentiKerkesa> studentet = new List<StudentiKerkesa>();
             
             try
             {
-                SqlCommand cmd = new SqlCommand("GetStudentsByProfesoriID", con);
+                SqlCommand cmd = new SqlCommand("GetStudentsRequestByProfesoriIDKursiID", con);
                 cmd.Parameters.AddWithValue("@Profesoriid", profesori);
                 cmd.Parameters.AddWithValue("@kursiid", kursi);
                 cmd.CommandType = CommandType.StoredProcedure;
