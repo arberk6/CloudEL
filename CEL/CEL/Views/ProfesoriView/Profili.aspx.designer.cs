@@ -10,7 +10,15 @@
 namespace CEL.Views.ProfesoriView {
     
     
-    public partial class Profili
-    {
+    public partial class Profili {
+        
+        /// <summary>
+        /// list control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl list;
     }
 }
