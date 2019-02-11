@@ -55,6 +55,7 @@
     <Compile Include="Punetori.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="Studenti.cs" />
+    <Compile Include="StudentiKerkesa.cs" />
     <Compile Include="Syllabusi.cs" />
     <Compile Include="Useri.cs" />
   </ItemGroup>

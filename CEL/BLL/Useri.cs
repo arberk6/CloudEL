@@ -65,12 +65,13 @@ namespace BLL
                 SqlCommand cmd = new SqlCommand("UseriSelectByEmail", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@UseriID", email);
+                cmd.Parameters.AddWithValue("@email", email);
 
                 SqlDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
                 {
+                    user = new InternalUser();
                     user.email=rdr["email"].ToString();
                     user.password = rdr["Passwordi"].ToString();
                     user.id=(int)rdr["personiid"];

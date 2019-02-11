@@ -1,0 +1,56 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Profesori.master.cs" Inherits="CEL.Views.ProfesoriView.Profesori" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
+        
+        <link href="../../Content/simple-sidebar.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+          <div class="d-flex" id="wrapper">
+
+              <div id="topContent">
+                    <nav class="navbar navbar-dark bg-primary" style="text-align:right; vertical-align:middle;">
+                        <asp:Button class="btn btn-primary" ID="Button1" runat="server" Text="Log out"/>
+                    </nav>
+            </div>
+
+    <!-- Sidebar -->
+              <div id="sideContent" style="float: left;width: 200px; margin-right: 20px;">
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="list-group list-group-flush">
+          <a href="Profili.aspx" class="list-group-item list-group-item-action bg-light">Profili</a>
+        <a href="Studentet.aspx" class="list-group-item list-group-item-action bg-light">Studentet</a>
+        <a href="Kerkesat.aspx" class="list-group-item list-group-item-action bg-light">Kerkesat</a>
+        
+      </div>
+    </div>
+                  </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        
+        <div id="mainContent">
+      <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+          
+            </asp:ContentPlaceHolder>
+            </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+              
+  </div>
+  <!-- /#wrapper -->
+
+    </form>
+</body>
+</html>
