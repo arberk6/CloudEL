@@ -67,6 +67,7 @@ namespace BLL
                 {
                     StudentiKerkesa studenti = new StudentiKerkesa();
                     string vitiakademik = rdr["VitiAkademik"].ToString();
+                    studenti.kerkesaID = (int)rdr["requestid"];
                     studenti.PersoniID = (int)rdr["PersoniID"];
                     studenti.Emri = rdr["Emri"].ToString();
                     studenti.Mbiemri = rdr["Mbiemri"].ToString();
@@ -92,5 +93,27 @@ namespace BLL
             }
             return studentet;
         }
+
+        public void UpdateStatusByProfesori(String status, int RequestID)
+        {
+            String procedure = "requestDeniedByProfesori";
+            SqlConnection con = Generals.GetNewConnection();
+            try
+            {
+                if (status.Equals("approved")) procedure = "requestAprovedByProfesori";
+                SqlCommand cmd = new SqlCommand(procedure, con);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@requestid", RequestID);
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        
     }
 }
