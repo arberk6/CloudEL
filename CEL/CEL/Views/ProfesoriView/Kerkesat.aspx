@@ -70,7 +70,7 @@
                 <%--EDITO--%>
                 <asp:TemplateField HeaderText="Prano" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button ID="PranoButton" Text="Prano" runat="server" CommandName="Ndrysho" CommandArgument='<%# Bind("IDPunetori") %>'/>
+                        <asp:Button class="btn btn-primary" ID="PranoButton" Text="Prano" runat="server" CommandName="Ndrysho" CommandArgument='<%# Bind("IDPunetori") %>'/>
                     </ItemTemplate>
                 </asp:TemplateField>
 
@@ -78,7 +78,7 @@
                 <%--FSHIJ--%>
                 <asp:TemplateField HeaderText="Fshij" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button ID="FshijButton" Text="Fshij" runat="server" CommandName="Fshij" CommandArgument='<%# Bind("IDPunetori") %>' />
+                        <asp:Button class="btn btn-danger" ID="FshijButton" Text="Fshij" runat="server" CommandName="Fshij" CommandArgument='<%# Bind("IDPunetori") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
