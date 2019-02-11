@@ -27,12 +27,17 @@ namespace CEL.Views
             else if(validate[3]=="Student")
             {
                 Session["UserID"] = validate[0];
-                Response.Redirect("Studenti/Profili.aspx");
+                Response.Redirect("StudentiView/Profili.aspx");
             }
             else if (validate[3] == "Profesor")
             {
                 Session["UserID"] = validate[0];
                 //to be continued
+            }
+            else if (validate[3] == "Admin")
+            {
+                Session["UserID"] = validate[0];
+                Response.Redirect("AdministratoriView/index.aspx");
             }
         }
 

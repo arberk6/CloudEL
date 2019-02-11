@@ -47,6 +47,12 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
+                <asp:TemplateField HeaderText="Numri studenteve">
+                    <ItemTemplate>
+                        <asp:Label ID="NumriStuLabel" runat="server" Text='<%# Bind("PersoniID") %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+
               
                 <%--aprovo--%>
                 <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
