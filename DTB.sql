@@ -447,6 +447,11 @@ inner join ProfesoriKursi pk on r.ProfesoriKursi = pk.ProfesoriKursiID
 --Per profen
 inner join Profesori p on pk.ProfesoriID = p.profesoriID
 inner join Personi pers on pk.ProfesoriID = pers.PersoniID
+--Per kursin
+inner join Kursi k on pk.KursiID = k.KursiID
+
+where r.studenti = @StudentiID
+go
 create procedure requestDeniedByAdministratori
 @requestid int
 as
@@ -460,14 +465,65 @@ as
 update request set aprovuarNgaProfesori='denied'
 where requestid=@requestid  
 go
-
---Per kursin
-inner join Kursi k on pk.KursiID = k.KursiID
-
-where r.studenti = @StudentiID
+-------------------------------------------------------------
+create procedure readRequests
+as
+select pk.ProfesoriKursiID,p.Emri as 'Profesori', k.Emri as 'Kursi', count(r.studenti) as 'Numri'
+from request r inner join ProfesoriKursi pk
+				on pk.ProfesoriKursiID=r.ProfesoriKursi
+					inner join Personi p 
+					on p.PersoniID = pk.ProfesoriID
+					inner join Kursi k
+					on k.KursiID=pk.KursiID
+where aprovuarNgaAdministratori='waiting'
+group by pk.ProfesoriKursiID, p.Emri, k.Emri
 go
+--------------------------------------------------------------
+
+create procedure denyRequestsByAdministratoriOnAll
+@ProfesoriKursiid int
+as
+update request set 
+aprovuarNgaAdministratori='denied'
+where ProfesoriKursi=@ProfesoriKursiid
+go
+
 ---------------------------------------------------------------
 
+--------------------------------------------------------------
+create procedure getRequestsByProfesoriKursi
+@ProfesoriKursiid int
+as
+select r.requestid as 'RequestID',p.PersoniID as 'StudentiID',p.Emri as 'Emri', p.Mbiemri as 'Mbiemri', prog.Emri as 'Programi'
+from request r inner join Personi p 
+				on p.PersoniID=r.studenti
+				inner join ProfesoriKursi pk
+				on r.ProfesoriKursi=pk.ProfesoriKursiID
+					inner join kursi k
+					on k.KursiID = pk.KursiID
+						inner join Programi prog
+						on prog.ProgramiID=k.Programi
+where r.ProfesoriKursi=@ProfesoriKursiid and aprovuarNgaAdministratori='waiting'
+go
+----------------------------------------------------------------
+create procedure aproveRequestForStudent
+@studentiID int ,
+@profesoriKursi int
+as
+update request set aprovuarNgaAdministratori='approved'
+where studenti=5 and ProfesoriKursi=1
+go
+
+----------------------------------------------------------------
+create procedure denyRequestForStudent
+@studentiID int,
+@profesoriKursi int
+as
+update request set aprovuarNgaAdministratori='denied'
+where studenti=@studentiID and ProfesoriKursi=@profesoriKursi
+go
+
+----------------------------------------------------------------
 create procedure GetStudentsRequestByProfesoriIDKursiID
 @profesoriid int,
 @kursiid int
