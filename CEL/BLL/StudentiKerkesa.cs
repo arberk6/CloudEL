@@ -9,5 +9,6 @@ namespace BLL
     public class StudentiKerkesa : Studenti
     {
         public String kursi { get; set; }
+        public int kerkesaID { get; set; }
     }
 }

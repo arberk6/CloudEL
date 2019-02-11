@@ -13,16 +13,27 @@ namespace CEL.Views.ProfesoriView
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            showKerkesat();
+            mbushDropDownList();
+            ShowKerkesat();
         }
 
-        private void showKerkesat()
+        private void mbushDropDownList()
         {
-            
+            ProfesoriKursi pk = new ProfesoriKursi();
+            List<Kursi> kurset = pk.GetKursetByProfesoriID(Convert.ToInt32(Session["UserID"]));
 
+            foreach(Kursi kursi in kurset)
+            {
+                FilterKerkimiDropDown.Items.Add(kursi.Emri);
+            }
+
+        }
+
+        private void ShowKerkesat()
+        {
             ProfesoriMapper pm = new ProfesoriMapper();
             
-            ListGridView.DataSource = pm.showKerkesat(Convert.ToInt32(Session["UserID"]));
+            ListGridView.DataSource = pm.ShowKerkesat(Convert.ToInt32(Session["UserID"]));
             ListGridView.DataBind();
         }
 
@@ -33,13 +44,29 @@ namespace CEL.Views.ProfesoriView
 
         protected void ListGridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Ndrysho") Response.Redirect("Ndrysho/NdryshoPunetori.aspx");
-            else if (e.CommandName == "Fshij") Response.Redirect("Fshij/FshijPunetore.aspx");
+            Request r = new Request();
+
+            if (e.CommandName == "Prano") r.UpdateStatusByProfesori("approved", Convert.ToInt32(e.CommandArgument.ToString()));
+            else if (e.CommandName == "Fshij") r.UpdateStatusByProfesori("approved", Convert.ToInt32(e.CommandArgument.ToString()));
 
         }
 
         protected void ListGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ListGridView.DataSource = null;
+            ListGridView.DataBind();
+
+            String selectedValue = FilterKerkimiDropDown.SelectedValue;
+            if(selectedValue.Equals("Te gjitha"))
+            {
+                ShowKerkesat();
+                return;
+            }
+
+            ProfesoriMapper pm = new ProfesoriMapper();
+
+            ListGridView.DataSource = pm.ShowKerkesatPerKurs(Convert.ToInt32(Session["UserID"]), selectedValue);
+            ListGridView.DataBind();
         }
 
     }
