@@ -37,7 +37,7 @@ namespace CEL.Views
             }
             else if (validate[3] == "Admin")
             {
-                Response.Redirect("AdministratoriView/index.aspx");
+                Response.Redirect("~/Views/AdministratoriView/index.aspx");
             }
         }
 

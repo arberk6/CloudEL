@@ -15,12 +15,13 @@ namespace BLL
         int studenti { get; set; }
         int CreatedBy { get; set; }
         String CreatedDate { get; set; }
-        bool Aprovuar { get; set; }
+        string aprovuarNgaAdministratori { get; set; }
+        string aprovuarNgaProfesori { get; set; }
 
         public List<Request> readAllRequest()
         {
             SqlConnection con = Generals.GetNewConnection();
-            List<Request>requestlist= new List<Request>();
+            List<Request> requestlist = new List<Request>();
             try
             {
                 SqlCommand cmd = new SqlCommand("readAllRequest", con);
@@ -34,8 +35,9 @@ namespace BLL
                     request.requestid = (int)rdr["requestid"];
                     request.ProfesoriKursi = (int)rdr["ProfesoriKursi"];
                     request.studenti = (int)rdr["studenti"];
-                    request.Aprovuar = (bool)rdr["Aprovuar"];
-                     if (rdr["CreatedBy"] != DBNull.Value)
+                    request.aprovuarNgaAdministratori = rdr["aprovuarNgaAdministratori"].ToString();
+                    request.aprovuarNgaProfesori = rdr["aprovuarNgaProfesori"].ToString();
+                    if (rdr["CreatedBy"] != DBNull.Value)
                         request.CreatedBy = (int)rdr["CreatedBy"];
                     if (rdr["CreatedDate"] != DBNull.Value)
                         request.CreatedDate = rdr["CreatedDate"].ToString();
@@ -49,11 +51,44 @@ namespace BLL
             return requestlist;
         }
 
+        public DataTable readRequests()
+        {
+            SqlConnection con = Generals.GetNewConnection();
+
+            DataTable dt = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("readRequests", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                dt = new DataTable();
+                dt.Columns.Add("ProfesoriKursiID");
+                dt.Columns.Add("Profesori");
+                dt.Columns.Add("Kursi");
+                dt.Columns.Add("Numri");
+                while (rdr.Read())
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["ProfesoriKursiID"] = (int)rdr["ProfesoriKursiID"];
+                    dr["Profesori"] = rdr["Profesori"].ToString();
+                    dr["Kursi"] = rdr["Kursi"].ToString();
+                    dr["Numri"] = rdr["Numri"].ToString();
+                    dt.Rows.Add(dr);
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+            return dt;
+        }
+
         public List<StudentiKerkesa> GetStudentsByProfesoriIDKursiID(int profesori, int kursi, String emriKursit)
         {
             SqlConnection con = Generals.GetNewConnection();
             List<StudentiKerkesa> studentet = new List<StudentiKerkesa>();
-            
+
             try
             {
                 SqlCommand cmd = new SqlCommand("GetStudentsByProfesoriID", con);
@@ -91,6 +126,90 @@ namespace BLL
                 con.Close();
             }
             return studentet;
+        }
+
+        public void denyRequest(int ProfesoriKursiid) {
+            SqlConnection con = Generals.GetNewConnection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("denyRequestsByAdministratoriOnAll", con);
+                cmd.Parameters.AddWithValue("@ProfesoriKursiid", ProfesoriKursiid);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public DataTable getRequestsByProfesoriKursi(int ProfesoriKursiid)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            DataTable dt = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("getRequestsByProfesoriKursi", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProfesoriKursiid", ProfesoriKursiid);
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                dt = new DataTable();
+                dt.Columns.Add("RequestID");
+                dt.Columns.Add("StudentiID");
+                dt.Columns.Add("Emri");
+                dt.Columns.Add("Mbiemri");
+                dt.Columns.Add("Programi");
+                while (rdr.Read())
+                {
+                    DataRow dr = dt.NewRow();
+                    dr["RequestID"] = (int)rdr["RequestID"];
+                    dr["StudentiID"] = (int)rdr["StudentiID"];
+                    dr["Emri"] = rdr["Emri"].ToString();
+                    dr["Mbiemri"] = rdr["Mbiemri"].ToString();
+                    dr["Programi"] = rdr["Programi"].ToString();
+                    dt.Rows.Add(dr);
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+            return dt;
+        }
+
+        public void aproveRequestForStudent(int studentiID, int profesoriKursi) {
+            SqlConnection con = Generals.GetNewConnection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("aproveRequestForStudent", con);
+                cmd.Parameters.AddWithValue("@studentiID", studentiID);
+                cmd.Parameters.AddWithValue("@profesoriKursi", profesoriKursi);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+        public void denyRequestForStudent(int studentiID, int profesoriKursi)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("denyRequestForStudent", con);
+                cmd.Parameters.AddWithValue("@studentiID", studentiID);
+                cmd.Parameters.AddWithValue("@profesoriKursi", profesoriKursi);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

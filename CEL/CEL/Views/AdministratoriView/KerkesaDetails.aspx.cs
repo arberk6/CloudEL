@@ -8,40 +8,32 @@ using DAL;
 
 namespace CEL.Views.AdministratoriView
 {
-    public partial class index : System.Web.UI.Page
+    public partial class KerkesaDetails : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                postData();
+                placeShenimet();
         }
 
-        public void postData()
+        private void placeShenimet()
         {
-            ListGridView.DataSource = new AdministratoriMapper().getRequests();
+            ListGridView.DataSource = new AdministratoriMapper().getRequestsByProfesoriKursi(Int32.Parse(Session["ProfesoriKursiID"].ToString()));
             ListGridView.DataBind();
         }
 
         protected void ListGridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            //Session["idPuna"] = Int32.Parse(e.CommandArgument.ToString());
-
             if (e.CommandName == "Aprovo")
             {
-                Session["ProfesoriKursiID"] = Int32.Parse((e.CommandArgument.ToString()));
-                new AdministratoriMapper().aproveRequest(Int32.Parse((e.CommandArgument.ToString())));
-            }
-            else if (e.CommandName == "Detajet")
-            {
-                Session["ProfesoriKursiID"] = Int32.Parse((e.CommandArgument.ToString()));
-                Response.Redirect("KerkesaDetails.aspx");
+                new AdministratoriMapper().aproveRequestForStudent(Int32.Parse(e.CommandArgument.ToString()), Int32.Parse(Session["ProfesoriKursiID"].ToString()));
+
             }
             else if (e.CommandName == "Refuzo")
             {
-                new AdministratoriMapper().denyRequest(Int32.Parse((e.CommandArgument.ToString())));
-                Response.Redirect("index.aspx");
+                new AdministratoriMapper().denyRequestForStudent(Int32.Parse(e.CommandArgument.ToString()), Int32.Parse(Session["ProfesoriKursiID"].ToString()));
             }
-
+            Response.Redirect("KerkesaDetails.aspx");
         }
 
         protected void ListGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

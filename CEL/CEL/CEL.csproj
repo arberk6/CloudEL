@@ -106,6 +106,7 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Views\AdministratoriView\index.aspx" />
+    <Content Include="Views\AdministratoriView\KerkesaDetails.aspx" />
     <Content Include="Views\ProfesoriView\Kerkesat.aspx" />
     <Content Include="Views\ProfesoriView\Profili.aspx" />
     <Content Include="Views\ProfesoriView\Studentet.aspx" />
@@ -136,6 +137,13 @@
     </Compile>
     <Compile Include="Views\AdministratoriView\index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdministratoriView\KerkesaDetails.aspx.cs">
+      <DependentUpon>KerkesaDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\AdministratoriView\KerkesaDetails.aspx.designer.cs">
+      <DependentUpon>KerkesaDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\ProfesoriView\Kerkesat.aspx.cs">
       <DependentUpon>Kerkesat.aspx</DependentUpon>
