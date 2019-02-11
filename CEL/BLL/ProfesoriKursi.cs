@@ -49,5 +49,29 @@ namespace BLL
             }
             return kurset;
         }
+
+        public ProfesoriKursi GetProfKursiIDByProfesoriIDAndKursiID(int ProfesoriID, int KursiID)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("GetProfKursiByProfIDandKursiID", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ProfesoriID", ProfesoriID);
+                cmd.Parameters.AddWithValue("@KursiID", KursiID);
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                ProfesoriKursi pk = new ProfesoriKursi();
+
+                while (rdr.Read())
+                    pk.ProfesoriKursiID = (int)rdr["ProfesoriKursiID"];
+
+                return pk;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }

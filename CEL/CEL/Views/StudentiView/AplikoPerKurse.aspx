@@ -17,8 +17,8 @@
             AutoGenerateColumns="False"
             Width="100%"
             EditIndex="1"
-            EnableViewState="False"
-            OnPageIndexChanging="ListGridView_PageIndexChanging">
+            OnRowCommand="ListGridView_RowCommand"
+            EnableViewState="False">
             <PagerSettings PageButtonCount="20" FirstPageText="fillimi" LastPageText="fundi" />
             <RowStyle HorizontalAlign="Center" />
 
@@ -56,7 +56,7 @@
                 <%--Kreditet--%>
                 <asp:TemplateField HeaderText="Kreditet" ItemStyle-Width="10%" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Label ID="EmriProfes" runat="server" Text='<%# Bind("EmriProfes") %>' />
+                        <asp:Label ID="Kreditet" runat="server" Text='<%# Bind("Kreditet") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 

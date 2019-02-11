@@ -53,5 +53,30 @@ namespace BLL
             }
             return kursi;
         }
+
+        public Kursi KursiSelectByEmri(String Emri)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            Kursi kursi = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SelectLendaByEmri", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Emri", Emri);
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                kursi = new Kursi();
+                while (rdr.Read())
+                {
+                    kursi.KursiID = (int)rdr["KursiID"];
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+            return kursi;
+        }
     }
 }

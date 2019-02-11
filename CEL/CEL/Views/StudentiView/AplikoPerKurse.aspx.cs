@@ -11,8 +11,9 @@ namespace CEL.Views.StudentiView
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserID"] == null || !Convert.ToString(Session["Privilegji"]).Equals("Student")) Response.Redirect("~/Views/login.aspx");
-            else ShfaqKurset();
+            //if (Session["UserID"] == null || !Convert.ToString(Session["Privilegji"]).Equals("Student")) Response.Redirect("~/Views/login.aspx");
+            //else
+                ShfaqKurset();
         }
 
         protected void ShfaqKurset()
