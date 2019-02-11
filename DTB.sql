@@ -447,6 +447,11 @@ inner join ProfesoriKursi pk on r.ProfesoriKursi = pk.ProfesoriKursiID
 --Per profen
 inner join Profesori p on pk.ProfesoriID = p.profesoriID
 inner join Personi pers on pk.ProfesoriID = pers.PersoniID
+--Per kursin
+inner join Kursi k on pk.KursiID = k.KursiID
+
+where r.studenti = @StudentiID
+go
 create procedure requestDeniedByAdministratori
 @requestid int
 as
@@ -482,11 +487,7 @@ update request set
 aprovuarNgaAdministratori='denied'
 where ProfesoriKursi=@ProfesoriKursiid
 go
---Per kursin
-inner join Kursi k on pk.KursiID = k.KursiID
 
-where r.studenti = @StudentiID
-go
 ---------------------------------------------------------------
 
 --------------------------------------------------------------
@@ -513,17 +514,15 @@ update request set aprovuarNgaAdministratori='approved'
 where studenti=5 and ProfesoriKursi=1
 go
 
-select * from request where studenti=5 and ProfesoriKursi=1
 ----------------------------------------------------------------
 create procedure denyRequestForStudent
-@studentiID int ,
+@studentiID int,
 @profesoriKursi int
 as
 update request set aprovuarNgaAdministratori='denied'
 where studenti=@studentiID and ProfesoriKursi=@profesoriKursi
 go
 
-select * from request
 ----------------------------------------------------------------
 create procedure GetStudentsRequestByProfesoriIDKursiID
 @profesoriid int,
