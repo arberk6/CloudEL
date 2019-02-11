@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/bootstrap.min.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Label ID="MesazhiLabel" runat="server" Text="" />
+<asp:Content ID="Content2"  ContentPlaceHolderID="ContentPlaceHolder1" runat="server" auto>
+    <asp:Label ID="MesazhiLabel"  runat="server" Text=""  />
         <asp:GridView ID="ListGridView" runat="server" 
             CellPadding="4" ForeColor="#333333"
             CssClass="table table-striped table-bordered table-condensed"
@@ -13,7 +13,7 @@
             AutoGenerateColumns="False"
             Width="100%"
             EditIndex="1"
-            EnableViewState="False"
+            EnableViewState="true"
             OnPageIndexChanging="ListGridView_PageIndexChanging"
             OnRowCommand="ListGridView_RowCommand"
             OnSelectedIndexChanged="ListGridView_SelectedIndexChanged">
@@ -39,26 +39,26 @@
                 <%--kursi--%>
                 <asp:TemplateField HeaderText="Kursi">
                     <ItemTemplate>
-                        <asp:Label ID="KursiLabel" runat="server" Text='<%# Bind("KursiID") %>' />
+                        <asp:Label ID="KursiLabel" runat="server" Text='<%# Bind("Profesori") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <%--profesori--%>
                 <asp:TemplateField HeaderText="Profesori">
                     <ItemTemplate>
-                        <asp:Label ID="ProfesoriLabel" runat="server" Text='<%# Bind("PersoniID") %>' />
+                        <asp:Label ID="ProfesoriLabel" runat="server" Text='<%# Bind("Kursi") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <%--numri studenteve--%>
                 <asp:TemplateField HeaderText="Numri studenteve">
                     <ItemTemplate>
-                        <asp:Label ID="NumriStuLabel" runat="server" Text='<%# Bind("PersoniID") %>' />
+                        <asp:Label ID="NumriStuLabel" runat="server" Text='<%# Bind("Numri") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
                 
                 <%--details--%>
-              <asp:TemplateField HeaderText="Details" ItemStyle-Width="10px" InsertVisible="False">
+              <asp:TemplateField HeaderText="Detajet" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
                         <asp:Button class="btn btn-info" ID="vButton" text="Details" runat="server" CommandName="Details" CommandArgument='<%# Bind("requestid") %>' ToolTip="Details"  />
                     </ItemTemplate>
@@ -67,14 +67,14 @@
                 <%--aprovo--%>
                 <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button class="btn btn-primary" ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
+                        <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
                     </ItemTemplate>
                 </asp:TemplateField>
                
                 <%--refuzo--%>
-                <asp:TemplateField HeaderText="refuzo" ItemStyle-Width="10px" InsertVisible="False">
+                <asp:TemplateField HeaderText="Refuzo" ItemStyle-Width="10px"  InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button class="btn btn-danger" ID="refuzoButton" text="refuzo" runat="server" CommandName="refuzo" CommandArgument='<%# Bind("requestid") %>' ToolTip="refuzo"  />
+                        <asp:Button ID="refuzoButton" text="refuzo" runat="server" CommandName="refuzo" CommandArgument='<%# Bind("requestid") %>' ToolTip="refuzo"  />
                     </ItemTemplate>
                 </asp:TemplateField>
 
