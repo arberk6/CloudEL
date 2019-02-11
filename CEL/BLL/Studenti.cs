@@ -63,31 +63,124 @@ namespace BLL
             return studenti;
         }
 
-        public List<String> GetRequestsForStudenti(int id)
+        public DataTable GetRequestsForStudenti(int StudentiID)
         {
             SqlConnection con = Generals.GetNewConnection();
+
             try
             {
-                SqlCommand cmd = new SqlCommand("getKurset", con);
+                SqlCommand cmd = new SqlCommand("SelectAllRequestsByStudentiID", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@StudentiID", StudentiID);
 
                 SqlDataReader rdr = cmd.ExecuteReader();
 
-                
-
-                List<String> requests = new List<String>();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("RequestCreatedDate");
+                dt.Columns.Add("EmriProfes");
+                dt.Columns.Add("EmriKursit");
+                dt.Columns.Add("aprovuarNgaProfesori");
+                dt.Columns.Add("aprovuarNgaAdministratori");
 
                 while (rdr.Read())
                 {
-                    requests.Add(((int)rdr["ProfesoriID"]).ToString());
-                    requests.Add(((int)rdr["KursiID"]).ToString());
+                    DataRow dr = dt.NewRow();
+
+                    dr["RequestCreatedDate"] = rdr["RequestCreatedDate"]).ToString();
+                    dr["EmriProfes"] = rdr["EmriProfes"].ToString() + " " + rdr["MbiemriProfes"].ToString();
+                    dr["EmriKursit"] = rdr["EmriKursit"].ToString();
+                    dr["aprovuarNgaProfesori"] = rdr["aprovuarNgaProfesori"].ToString();
+                    dr["aprovuarNgaAdministratori"] = rdr["aprovuarNgaAdministratori"].ToString();
+
+                    dt.Rows.Add(dr);
                 }
+
+                return dt;
             }
             finally
             {
                 con.Close();
             }
-            return null;
+        }
+
+        public DataTable GetAllKursetForStudenti(int StudentiID)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SelectAllKurset", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("EmriKursit");
+                dt.Columns.Add("EmriProfes");
+                dt.Columns.Add("Kreditet");
+                dt.Columns.Add("NumriLigjeratave");
+                dt.Columns.Add("NumriUshtrimeve");
+
+                while (rdr.Read())
+                {
+                    DataRow dr = dt.NewRow();
+
+                    dr["EmriKursit"] = rdr["EmriKursit"].ToString();
+                    dr["EmriProfes"] = rdr["Emri"].ToString() + " " + rdr["Mbiemri"].ToString();
+                    dr["Kreditet"] = (int)rdr["Kreditet"];
+                    dr["NumriLigjeratave"] = (int)rdr["NumriLigjeratave"];
+                    dr["NumriUshtrimeve"] = (int)rdr["NumriUshtrimeve"];
+
+                    dt.Rows.Add(dr);
+                }
+
+                return dt;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public DataTable GetAllKursetByEmriKursit(String Emri)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("selectProfesoriKursiByEmriKursit", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Emri", Emri);
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("EmriKursit");
+                dt.Columns.Add("EmriProfes");
+                dt.Columns.Add("Kreditet");
+                dt.Columns.Add("NumriLigjeratave");
+                dt.Columns.Add("NumriUshtrimeve");
+                dt.Columns.Add("KursiID");
+
+                while (rdr.Read())
+                {
+                    DataRow dr = dt.NewRow();
+
+                    dr["EmriKursit"] = rdr["EmriKursit"].ToString();
+                    dr["EmriProfes"] = rdr["Emri"].ToString() + " " + rdr["Mbiemri"].ToString();
+                    dr["Kreditet"] = (int)rdr["Kreditet"];
+                    dr["NumriLigjeratave"] = (int)rdr["NumriLigjeratave"];
+                    dr["KursiID"] = (int)rdr["KursiID"];
+
+                    dt.Rows.Add(dr);
+                }
+
+                return dt;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

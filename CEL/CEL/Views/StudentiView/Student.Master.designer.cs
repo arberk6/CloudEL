@@ -49,13 +49,13 @@ namespace CEL.Views.StudentiView {
         protected global::System.Web.UI.WebControls.Button Profili;
         
         /// <summary>
-        /// RegjistroKurset control.
+        /// Kurset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button RegjistroKurset;
+        protected global::System.Web.UI.WebControls.Button Kurset;
         
         /// <summary>
         /// SideBar control.

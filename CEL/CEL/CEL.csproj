@@ -110,6 +110,8 @@
     <Content Include="Views\ProfesoriView\Profili.aspx" />
     <Content Include="Views\ProfesoriView\Studentet.aspx" />
     <Content Include="Views\PunetoriView\index.aspx" />
+    <Content Include="Views\StudentiView\AplikoPerKurse.aspx" />
+    <Content Include="Views\StudentiView\KonfirmoKursi.aspx" />
     <Content Include="Views\StudentiView\Profili.aspx" />
     <Content Include="Views\StudentiView\ZgjedhKurset.aspx" />
     <Content Include="Web.config" />
@@ -178,6 +180,20 @@
     </Compile>
     <Compile Include="Views\PunetoriView\Punetori.Master.designer.cs">
       <DependentUpon>Punetori.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentiView\AplikoPerKurse.aspx.cs">
+      <DependentUpon>AplikoPerKurse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StudentiView\AplikoPerKurse.aspx.designer.cs">
+      <DependentUpon>AplikoPerKurse.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StudentiView\KonfirmoKursi.aspx.cs">
+      <DependentUpon>KonfirmoKursi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\StudentiView\KonfirmoKursi.aspx.designer.cs">
+      <DependentUpon>KonfirmoKursi.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\StudentiView\Profili.aspx.cs">
       <DependentUpon>Profili.aspx</DependentUpon>
@@ -259,7 +275,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58693</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
