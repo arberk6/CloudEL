@@ -423,6 +423,19 @@ where requestid=@requestid
 go
 
 ---------------------------------------------------------------
+create procedure SelectAllRequestsByStudentiID
+
+@StudentiID int
+
+as
+
+Select r.CreatedDate as 'RequestCreatedDate', pers.Emri as 'EmriProfes', pers.Mbiemri as 'MbiemriProfes', k.Emri as 'EmriKursit', r.aprovuarNgaAdministratori, r.aprovuarNgaProfesori
+from request r
+inner join ProfesoriKursi pk on r.ProfesoriKursi = pk.ProfesoriKursiID
+
+--Per profen
+inner join Profesori p on pk.ProfesoriID = p.profesoriID
+inner join Personi pers on pk.ProfesoriID = pers.PersoniID
 create procedure requestDeniedByAdministratori
 @requestid int
 as
@@ -437,6 +450,12 @@ update request set aprovuarNgaProfesori='denied'
 where requestid=@requestid  
 go
 
+--Per kursin
+inner join Kursi k on pk.KursiID = k.KursiID
+
+where r.studenti = @StudentiID
+go
+---------------------------------------------------------------
 
 create procedure GetStudentsRequestByProfesoriIDKursiID
 @profesoriid int,
@@ -467,3 +486,27 @@ as
 select * from ProfesoriKursi
 where ProfesoriID=@profesoriid
 go
+------------------------------------------
+create procedure SelectAllKurset
+as
+select k.Emri as 'EmriKursit', pers.Emri, pers.Mbiemri, s.Kreditet, s.NumriLigjeratave, s.NumriUshtrimeve, k.KursiID  from ProfesoriKursi pk
+inner join Profesori p on pk.ProfesoriID = p.ProfesoriID
+inner join Personi pers on p.ProfesoriID = pers.PersoniID
+inner join Kursi k on pk.KursiID = k.KursiID
+inner join Syllabusi s on pk.SyllabusiID = s.SyllabusiID
+where k.Aktiv = '1'
+go
+------------------------------------------
+create procedure selectProfesoriKursiByEmriKursit
+@Emri varchar
+
+as
+
+select k.Emri as 'EmriKursit', pers.Emri, pers.Mbiemri, s.Kreditet, s.NumriLigjeratave, s.NumriUshtrimeve, k.KursiID  from ProfesoriKursi pk
+inner join Profesori p on pk.ProfesoriID = p.ProfesoriID
+inner join Personi pers on p.ProfesoriID = pers.PersoniID
+inner join Kursi k on pk.KursiID = k.KursiID
+inner join Syllabusi s on pk.SyllabusiID = s.SyllabusiID
+where k.Aktiv = '1' and k.Emri = @Emri
+go
+------------------------------------------

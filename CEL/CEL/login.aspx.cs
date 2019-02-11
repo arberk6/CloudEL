@@ -13,7 +13,8 @@ namespace CEL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Personi_ID"] == null) Response.Redirect("~/Views/login.aspx");
+            else MbushTeDhenat();
         }
 
         protected void Login(object sender, EventArgs e)
@@ -26,6 +27,7 @@ namespace CEL.Views
             }
 
             Session["UserID"] = validate[0];
+            Session["Privilegji"] = validate[3];
 
             if (validate[3]=="Student")
             {

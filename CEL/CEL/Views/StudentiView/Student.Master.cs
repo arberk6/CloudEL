@@ -17,8 +17,12 @@ namespace CEL.Views.StudentiView
 
         protected void Profili_Click(object sender, EventArgs e)
         {
-            new StudentiMapper().makeRequest(1,2);
-            
+            Response.Redirect("/Profili.aspx");
+        }
+
+        protected void Kurset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/ZgjedhKurset.aspx");
         }
     }
 }

@@ -15,7 +15,7 @@
             <div>
                 <asp:ImageButton ID="Logo" ImageUrl="~/img/logo.png" runat="server" ToolTip="Hr Managment" Width="180px" Height="60px" />
                 <asp:Button CssClass="ProfiliButton" ID="Profili" OnClick="Profili_Click" runat="server" Text="Profili" />
-                <asp:Button CssClass="RegjistroKursetButton" ID="RegjistroKurset" OnClick="RegjistroKurset_Click" runat="server" Text="RegjistroKurset" />
+                <asp:Button CssClass="Kurset" ID="Kurset" OnClick="Kurset_Click" runat="server" Text="Kurset" />
             </div>
             <%--SideBar--%>
             <div id="SideBar" class="sidebar" runat="server">
