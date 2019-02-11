@@ -35,17 +35,20 @@
             <PagerSettings PageButtonCount="20" FirstPageText="fillimi" LastPageText="fundi" />
             <Columns>
 
+                <%--kursi--%>
                 <asp:TemplateField HeaderText="Kursi">
                     <ItemTemplate>
                         <asp:Label ID="KursiLabel" runat="server" Text='<%# Bind("KursiID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
 
+                <%--profesori--%>
                 <asp:TemplateField HeaderText="Profesori">
                     <ItemTemplate>
                         <asp:Label ID="ProfesoriLabel" runat="server" Text='<%# Bind("PersoniID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
+
                 <%--numri studenteve--%>
                 <asp:TemplateField HeaderText="Numri studenteve">
                     <ItemTemplate>
@@ -54,9 +57,9 @@
                 </asp:TemplateField>
                 
                 <%--details--%>
-              <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
+              <asp:TemplateField HeaderText="Details" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
+                        <asp:Button ID="vButton" text="Details" runat="server" CommandName="Details" CommandArgument='<%# Bind("requestid") %>' ToolTip="Details"  />
                     </ItemTemplate>
                 </asp:TemplateField>
                
@@ -68,9 +71,9 @@
                 </asp:TemplateField>
                
                 <%--refuzo--%>
-                <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
+                <asp:TemplateField HeaderText="refuzo" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
-                        <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
+                        <asp:Button ID="refuzoButton" text="refuzo" runat="server" CommandName="refuzo" CommandArgument='<%# Bind("requestid") %>' ToolTip="refuzo"  />
                     </ItemTemplate>
                 </asp:TemplateField>
 

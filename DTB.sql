@@ -25,7 +25,18 @@ insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('test','
 insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('arber','arber','m','321321321','arber@test.com',12)
 insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('baba','baba','m','04923232','baba@test.com',19)
 insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('tezja','tezja','f','123122321','tezja@test.com',30)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('student','student','m','2222222','student@test.com',30)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('student1','student','m','2222222','student1@test.com',30)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('student2','student','m','2222222','student2@test.com',30)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('student3','student','m','2222222','student3@test.com',30)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('student4','student','m','2222222','student4@test.com',30)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('prof','prof','m','123123123','prof@test.com',1)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('prof1','prof','m','123123123','prof1@test.com',1)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('prof2','prof','m','123123123','prof2@test.com',1)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('prof3','prof','m','123123123','prof3@test.com',1)
+insert into Personi (Emri,Mbiemri,Gjinia,NrTelefonit,Email,Mosha)values('prof4','prof','m','123123123','prof4@test.com',1)
 go
+
 
 create table Useri (
 UseriID int not null primary key identity(1,1),
@@ -38,8 +49,20 @@ ModifiedBy int foreign key references Useri(useriid) null,
 CreatedDate date,
 ModifiedDate date
 )
-insert into Useri(username,Passwordi,Prioriteti,Personi) values('tester','test',1,1)
 insert into Useri(username,Passwordi,Prioriteti,Personi) values('arber','arber',2,2)
+--student insert dummy data
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('student','student',0,5)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('student1','student1',0,6)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('student2','student2',0,7)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('student3','student3',0,8)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('student4','student4',0,9)
+--profa insert dummy data
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('tester','test',1,1)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('prof','prof',1,10)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('prof1','prof1',1,11)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('prof2','prof2',1,12)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('prof3','prof3',1,13)
+insert into Useri(username,Passwordi,Prioriteti,Personi) values('prof4','prof4',1,14)
 
 create table Programi(
 ProgramiID int not null primary key identity(1,1),
@@ -51,6 +74,9 @@ CreatedDate date,
 ModifiedDate date
 )
 
+--programi insert
+insert into Programi values('programi',1,2,null,null,null)
+
 create table Kursi(
 KursiID int not null primary key identity(1,1),
 Emri varchar(20) not null,
@@ -61,6 +87,12 @@ ModifiedBy int foreign key references Useri(useriid) null,
 CreatedDate date,
 ModifiedDate date
 )
+--insert kursi data
+insert into Kursi values ('Java','1',1,2,null,null,null)
+insert into Kursi values ('Java2','1',1,2,null,null,null)
+insert into Kursi values ('Matematik1','1',1,2,null,null,null)
+insert into Kursi values ('SD','1',1,2,null,null,null)
+insert into Kursi values ('Database','1',1,2,null,null,null)
 
 create table Syllabusi (
 SyllabusiID int not null primary key identity(1,1),
@@ -76,20 +108,41 @@ ModifiedBy int foreign key references Useri(useriid) null,
 CreatedDate date,
 ModifiedDate date
 )
+--insert syllabusi data
+insert into Syllabusi values (5,'test','test','test',2,2,1,2,null,null,null)
+insert into Syllabusi values (5,'test1','test','test',2,2,1,2,null,null,null)
+insert into Syllabusi values (5,'test2','test','test',2,2,1,2,null,null,null)
+insert into Syllabusi values (5,'test3','test','test',2,2,1,2,null,null,null)
+insert into Syllabusi values (5,'test4','test','test',2,2,1,2,null,null,null)
 
 create table Administratori (
 AdministratoriID int not null foreign key references personi(personiid)
 )
+--insert admini
+insert into Administratori values(2)
 
 create table Studenti (
 StudentiID int not null foreign key references personi(personiid),
 VitiAkademik varchar(10) not null
 )
+--insert studenti
+insert into Studenti values(5,1)
+insert into Studenti values(6,1)
+insert into Studenti values(7,1)
+insert into Studenti values(8,1)
+insert into Studenti values(9,1)
 
 create table Profesori(
 ProfesoriID int not null foreign key references personi(personiid),
 TitulliAkademik varchar (30) not null
 )
+--insert profesori
+insert into Profesori values (1,'test')
+insert into Profesori values (10,'test1')
+insert into Profesori values (11,'test2')
+insert into Profesori values (12,'test3')
+insert into Profesori values (13,'test4')
+insert into Profesori values (14,'test5')
 
 create table ProfesoriKursi(
 ProfesoriKursiID int not null primary key identity(1,1),
@@ -97,6 +150,13 @@ ProfesoriID int foreign key references Personi(Personiid),
 KursiID int foreign key references Kursi(KursiID),
 SyllabusiID int foreign key references Syllabusi(SyllabusiID)
 )
+--insert data
+insert into ProfesoriKursi values (1,1,1)
+insert into ProfesoriKursi values (1,2,2)
+insert into ProfesoriKursi values (10,3,3)
+insert into ProfesoriKursi values (11,4,4)
+insert into ProfesoriKursi values (12,5,5)
+insert into ProfesoriKursi values (13,5,5)
 
 create table request
 (
@@ -108,6 +168,13 @@ aprovuarNgaProfesori bit not null default 0,
 CreatedBy int foreign key references Useri(useriid) not null ,
 CreatedDate date
 )
+--insert data
+insert into request values(1,5,0,0,5,null)
+insert into request values(3,5,0,0,5,null)
+insert into request values(2,6,0,0,6,null)
+insert into request values(3,7,0,0,7,null)
+insert into request values(1,8,0,0,8,null)
+insert into request values(1,9,0,0,9,null)
 
 
 
@@ -321,6 +388,7 @@ go
 create procedure readAllRequest
 as
 select * from request
+where aprovuarNgaAdministratori=0
 go
 --------------------------------------------------------------
 create procedure requestSelectByID
