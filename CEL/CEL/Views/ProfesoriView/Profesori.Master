@@ -16,7 +16,6 @@
 </head>
 <body>
     <form id="form1" runat="server">
-          <div class="d-flex" id="wrapper">
 
               <div id="topContent">
                     <nav class="navbar navbar-dark bg-primary" style="text-align:right; vertical-align:middle;">
@@ -37,19 +36,12 @@
                   </div>
     <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
         
         <div id="mainContent">
-      <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
           
             </asp:ContentPlaceHolder>
             </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-              
-  </div>
-  <!-- /#wrapper -->
 
     </form>
 </body>

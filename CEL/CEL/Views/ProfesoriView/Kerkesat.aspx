@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:DropDownList ID="FilterKerkimiDropDown"  runat="Server" Height="28px" Width="172px">
+    <asp:DropDownList CssClass="form-control" ID="FilterKerkimiDropDown"  runat="Server" Height="35px" Width="172px">
             <asp:ListItem>Te gjitha</asp:ListItem>
         </asp:DropDownList>
 
