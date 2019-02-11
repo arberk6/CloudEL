@@ -163,18 +163,18 @@ create table request
 requestid int not null primary key identity(1,1),
 ProfesoriKursi int not null foreign key references ProfesoriKursi(ProfesoriKursiID),
 studenti int not null foreign key references Personi(personiID),
-aprovuarNgaAdministratori bit not null default 0,
-aprovuarNgaProfesori bit not null default 0,
+aprovuarNgaAdministratori varchar(20) not null ,
+aprovuarNgaProfesori varchar(20) not null ,
 CreatedBy int foreign key references Useri(useriid) not null ,
 CreatedDate date
 )
 --insert data
-insert into request values(1,5,0,0,5,null)
-insert into request values(3,5,0,0,5,null)
-insert into request values(2,6,0,0,6,null)
-insert into request values(3,7,0,0,7,null)
-insert into request values(1,8,0,0,8,null)
-insert into request values(1,9,0,0,9,null)
+insert into request values(1,5,'waiting','waiting',5,null)
+insert into request values(3,5,'waiting','waiting',5,null)
+insert into request values(2,6,'waiting','waiting',6,null)
+insert into request values(3,7,'waiting','waiting',7,null)
+insert into request values(1,8,'waiting','waiting',8,null)
+insert into request values(1,9,'waiting','waiting',9,null)
 
 create table profaKursiStudenti
 (
@@ -391,7 +391,7 @@ create procedure MakeRequest
 @ProfesoriKursi int,
 @studenti int
 as
-insert into request(ProfesoriKursi,studenti) values (@ProfesoriKursi,@studenti)
+insert into request(ProfesoriKursi,studenti,aprovuarNgaAdministratori,aprovuarNgaProfesori) values (@ProfesoriKursi,@studenti,'waiting','waiting')
 go
 --------------------------------------------------------------
 create procedure readAllRequest
@@ -411,18 +411,31 @@ go
 create procedure requestAprovedByAdministratori
 @requestid int
 as
-update request set aprovuarNgaAdministratori=1
+update request set aprovuarNgaAdministratori='approved'
 where requestid=@requestid  
 go
 ----------------------------------------------------------------
 create procedure requestAprovedByProfesori
 @requestid int
 as
-update request set aprovuarNgaProfesori=1
+update request set aprovuarNgaProfesori='approved'
 where requestid=@requestid  
 go
 
 ---------------------------------------------------------------
+create procedure requestDeniedByAdministratori
+@requestid int
+as
+update request set aprovuarNgaAdministratori='denied'
+where requestid=@requestid  
+go
+----------------------------------------------------------------
+create procedure requestDeniedByProfesori
+@requestid int
+as
+update request set aprovuarNgaProfesori='denied'
+where requestid=@requestid  
+go
 
 
 create procedure GetStudentsByProfesoriIDKursiID
