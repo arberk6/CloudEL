@@ -43,5 +43,10 @@ namespace CEL.Views.AdministratoriView
         protected void ListGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
+
+        protected void Kthehu_OnClick(object sender, EventArgs e) {
+            Session["ProfesoriKursiID"] = null;
+            Response.Redirect("index.aspx");
+        }
     }
 }

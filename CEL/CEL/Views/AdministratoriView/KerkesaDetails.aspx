@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Button class="btn btn-primary" ID="KthehuButton" runat="server" Text="Kthehu" OnClick="Kthehu_OnClick"/>
     <asp:GridView ID="ListGridView" runat="server" 
             CellPadding="4" ForeColor="#333333"
             CssClass="table table-striped table-bordered table-condensed"
