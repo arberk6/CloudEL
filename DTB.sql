@@ -176,6 +176,15 @@ insert into request values(3,7,0,0,7,null)
 insert into request values(1,8,0,0,8,null)
 insert into request values(1,9,0,0,9,null)
 
+create table profaKursiStudenti
+(
+profaKursiStudenti int not null primary key identity(1,1),
+profakursi int not null foreign key references ProfesoriKursi(ProfesoriKursiid),
+studenti int not null foreign key references personi(personiid),
+createdby int null foreign key references personi(personiid),
+createddate date null
+)
+
 
 
 alter table Personi ADD Menaxheri int foreign key references useri(useriid)
