@@ -15,8 +15,7 @@
             AutoGenerateColumns="False"
             Width="100%"
             EditIndex="1"
-            EnableViewState="False"
-            OnPageIndexChanging="ListGridView_PageIndexChanging">
+            EnableViewState="False">
             <PagerSettings PageButtonCount="20" FirstPageText="fillimi" LastPageText="fundi" />
             <RowStyle HorizontalAlign="Center" />
 

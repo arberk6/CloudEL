@@ -59,5 +59,31 @@ namespace BLL
             }
             return profesori;
         }
+
+        public Profesori ProfesoriSelectByEmriAndMbiemri(String Emri, String Mbiemri)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+            Profesori profesori = null;
+            try
+            {
+                SqlCommand cmd = new SqlCommand("ProfesoriSelectByEmriAndMbiemri", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmriProfes", Emri);
+                cmd.Parameters.AddWithValue("@MbiemriProfes", Mbiemri);
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                Profesori p = new Profesori();
+
+                while (rdr.Read())
+                {
+                    p.PersoniID = (int)rdr["ProfesoriID"];
+                }
+            }
+            finally
+            {
+                con.Close();
+            }
+            return profesori;
+        }
     }
 }

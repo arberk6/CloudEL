@@ -86,7 +86,7 @@ namespace BLL
                 {
                     DataRow dr = dt.NewRow();
 
-                    dr["RequestCreatedDate"] = rdr["RequestCreatedDate"]).ToString();
+                    dr["RequestCreatedDate"] = rdr["RequestCreatedDate"].ToString();
                     dr["EmriProfes"] = rdr["EmriProfes"].ToString() + " " + rdr["MbiemriProfes"].ToString();
                     dr["EmriKursit"] = rdr["EmriKursit"].ToString();
                     dr["aprovuarNgaProfesori"] = rdr["aprovuarNgaProfesori"].ToString();
@@ -120,6 +120,7 @@ namespace BLL
                 dt.Columns.Add("Kreditet");
                 dt.Columns.Add("NumriLigjeratave");
                 dt.Columns.Add("NumriUshtrimeve");
+                dt.Columns.Add("KursiID");
 
                 while (rdr.Read())
                 {
@@ -130,6 +131,7 @@ namespace BLL
                     dr["Kreditet"] = (int)rdr["Kreditet"];
                     dr["NumriLigjeratave"] = (int)rdr["NumriLigjeratave"];
                     dr["NumriUshtrimeve"] = (int)rdr["NumriUshtrimeve"];
+                    dr["KursiID"] = (int)rdr["KursiID"];
 
                     dt.Rows.Add(dr);
                 }

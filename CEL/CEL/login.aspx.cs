@@ -13,8 +13,8 @@ namespace CEL.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Personi_ID"] == null) Response.Redirect("~/Views/login.aspx");
-            else MbushTeDhenat();
+            Session["UserID"] = 5;
+            Session["Privilegji"] = "Student";
         }
 
         protected void Login(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace CEL.Views
             Session["UserID"] = validate[0];
             Session["Privilegji"] = validate[3];
 
-            if (validate[3]=="Student")
+            if (validate[3] == "Student")
             {
                 Response.Redirect("StudentiView/Profili.aspx");
             }
@@ -39,7 +39,7 @@ namespace CEL.Views
             }
             else if (validate[3] == "Admin")
             {
-                Response.Redirect("AdministratoriView/index.aspx");
+                Response.Redirect("~/Views/AdministratoriView/index.aspx");
             }
         }
 

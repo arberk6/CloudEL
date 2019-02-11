@@ -165,16 +165,15 @@ ProfesoriKursi int not null foreign key references ProfesoriKursi(ProfesoriKursi
 studenti int not null foreign key references Personi(personiID),
 aprovuarNgaAdministratori varchar(20) not null ,
 aprovuarNgaProfesori varchar(20) not null ,
-CreatedBy int foreign key references Useri(useriid) not null ,
 CreatedDate date
 )
 --insert data
-insert into request values(1,5,'waiting','waiting',5,null)
-insert into request values(3,5,'waiting','waiting',5,null)
-insert into request values(2,6,'waiting','waiting',6,null)
-insert into request values(3,7,'waiting','waiting',7,null)
-insert into request values(1,8,'waiting','waiting',8,null)
-insert into request values(1,9,'waiting','waiting',9,null)
+insert into request values(1,5,'waiting','waiting',null)
+insert into request values(3,5,'waiting','waiting',null)
+insert into request values(2,6,'waiting','waiting',null)
+insert into request values(3,7,'waiting','waiting',null)
+insert into request values(1,8,'waiting','waiting',null)
+insert into request values(1,9,'waiting','waiting',null)
 
 create table profaKursiStudenti
 (
@@ -247,6 +246,18 @@ Select *
 from Profesori inner join personi on
 				ProfesoriID=PersoniID
 where ProfesoriID= @profesoriid and Aktiv = '1'
+go
+----------------------------------------------------------------
+create procedure ProfesoriSelectByEmriAndMbiemri
+
+@EmriProfes varchar(10),
+@MbiemriProfes varchar(10)
+
+as
+
+Select ProfesoriID from Profesori p
+inner join Personi pers on p.ProfesoriID = pers.PersoniID
+where pers.Emri = @EmriProfes AND pers.Mbiemri = @MbiemriProfes
 go
 ----------------------------------------------------------------
 create procedure ProfesoriInsert
@@ -499,3 +510,29 @@ inner join Syllabusi s on pk.SyllabusiID = s.SyllabusiID
 where k.Aktiv = '1' and k.Emri = @Emri
 go
 ------------------------------------------
+create procedure SelectLendaByEmri
+
+@Emri varchar(20)
+
+as
+
+Select KursiID from Kursi where Emri = @Emri
+go
+------------------------------------------
+create procedure GetProfKursiByProfIDandKursiID
+@ProfesoriID int,
+@KursiID int
+
+as
+Select ProfesoriKursiID from ProfesoriKursi where ProfesoriID = @ProfesoriID AND KursiID = @KursiID
+go
+------------------------------------------
+create procedure InsertRequest
+@ProfesoriKursiID int,
+@StudentiID int
+
+as
+
+insert into request VALUES(@ProfesoriKursiID, @StudentiID, '0', '0', GETDATE())
+
+go

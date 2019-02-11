@@ -114,6 +114,25 @@ namespace BLL
                 con.Close();
             }
         }
-        
+
+        public void insertRequest(int ProfesoriKursiID, int StudentiID)
+        {
+            SqlConnection con = Generals.GetNewConnection();
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("InsertRequest", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@ProfesoriKursiID", ProfesoriKursiID);
+                cmd.Parameters.AddWithValue("@StudentiID", StudentiID);
+
+                cmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
     }
 }
