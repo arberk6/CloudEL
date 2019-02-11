@@ -397,7 +397,7 @@ go
 create procedure readAllRequest
 as
 select * from request
-where aprovuarNgaAdministratori=0
+where aprovuarNgaAdministratori='waiting'
 go
 --------------------------------------------------------------
 create procedure requestSelectByID
