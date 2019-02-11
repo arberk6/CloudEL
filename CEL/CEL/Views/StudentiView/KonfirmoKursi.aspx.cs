@@ -17,7 +17,6 @@ namespace CEL.Views.StudentiView
         protected void AplikoButton_Click(object sender, EventArgs e)
         {
             int KursiID = Convert.ToInt32(Session["Kursi_ID_Per_Aplikim"]);
-            .......
         }
 
         protected void AnuloButton_Click(object sender, EventArgs e)

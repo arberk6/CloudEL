@@ -86,7 +86,7 @@ namespace BLL
                 {
                     DataRow dr = dt.NewRow();
 
-                    dr["RequestCreatedDate"] = rdr["RequestCreatedDate"]).ToString();
+                    dr["RequestCreatedDate"] = rdr["RequestCreatedDate"].ToString();
                     dr["EmriProfes"] = rdr["EmriProfes"].ToString() + " " + rdr["MbiemriProfes"].ToString();
                     dr["EmriKursit"] = rdr["EmriKursit"].ToString();
                     dr["aprovuarNgaProfesori"] = rdr["aprovuarNgaProfesori"].ToString();
