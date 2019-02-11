@@ -46,15 +46,28 @@
                         <asp:Label ID="ProfesoriLabel" runat="server" Text='<%# Bind("PersoniID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
-
+                <%--numri studenteve--%>
                 <asp:TemplateField HeaderText="Numri studenteve">
                     <ItemTemplate>
                         <asp:Label ID="NumriStuLabel" runat="server" Text='<%# Bind("PersoniID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
-
-              
+                
+                <%--details--%>
+              <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
+                    <ItemTemplate>
+                        <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
+                    </ItemTemplate>
+                </asp:TemplateField>
+               
                 <%--aprovo--%>
+                <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
+                    <ItemTemplate>
+                        <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />
+                    </ItemTemplate>
+                </asp:TemplateField>
+               
+                <%--refuzo--%>
                 <asp:TemplateField HeaderText="Aprovo" ItemStyle-Width="10px" InsertVisible="False">
                     <ItemTemplate>
                         <asp:Button ID="AprovoButton" text="Aprovo" runat="server" CommandName="Aprovo" CommandArgument='<%# Bind("requestid") %>' ToolTip="Aprovo"  />

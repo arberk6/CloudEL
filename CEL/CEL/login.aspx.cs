@@ -34,16 +34,9 @@ namespace CEL.Views
             else if (validate[3] == "Profesor")
             {
                 Response.Redirect("ProfesoriView/Profili.aspx");
-                //to be continued
             }
             else if (validate[3] == "Admin")
             {
-                Response.Redirect("ProfesoriView/Profili.aspx");
-                //to be continued
-            }
-            else if (validate[3] == "Admin")
-            {
-                Session["UserID"] = validate[0];
                 Response.Redirect("AdministratoriView/index.aspx");
             }
         }

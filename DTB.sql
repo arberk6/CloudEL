@@ -103,6 +103,8 @@ create table request
 requestid int not null primary key identity(1,1),
 ProfesoriKursi int not null foreign key references ProfesoriKursi(ProfesoriKursiID),
 studenti int not null foreign key references Personi(personiID),
+aprovuarNgaAdministratori bit not null default 0,
+aprovuarNgaProfesori bit not null default 0,
 CreatedBy int foreign key references Useri(useriid) not null ,
 CreatedDate date
 )
@@ -112,7 +114,6 @@ CreatedDate date
 alter table Personi ADD Menaxheri int foreign key references useri(useriid)
 alter table Personi ADD KrijuarNga int NULL foreign key references useri(useriid)
 alter table Personi ADD ModifikuarNga int foreign key references useri(useriid)
-alter table Request add aprovuar bit default 0
 
 -- PROCEDURAT PER STUDENT
 ----------------------------------------------------------------
@@ -330,11 +331,18 @@ go
 
 ---------------------------------------------------------------
 
-create procedure requestUpdateByID
+create procedure requestAprovedByAdministratori
 @requestid int
 as
-update request set aprovuar=1
-where requestid=@requestid
+update request set aprovuarNgaAdministratori=1
+where requestid=@requestid  
+go
+----------------------------------------------------------------
+create procedure requestAprovedByProfesori
+@requestid int
+as
+update request set aprovuarNgaProfesori=1
+where requestid=@requestid  
 go
 
 ---------------------------------------------------------------
